@@ -1,0 +1,356 @@
+﻿@{
+    ViewBag.Title = "Tài khoản khách hàng · MAISONÉ";
+}
+
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <title>Tài khoản khách hàng · MAISONÉ</title>
+
+    <link rel="stylesheet"
+          href="~/Content/css/style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+
+<body>
+
+    <div class="announcement">
+        MAISONÉ · MY ACCOUNT
+    </div>
+
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="header-inner">
+
+            <nav class="left-nav">
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Home")">
+                    TRANG CHỦ
+                </a>
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Products")">
+                    BỘ SƯU TẬP
+                </a>
+
+            </nav>
+
+
+            <button class="mobile-button"
+                    type="button"
+                    onclick="toggleMobileMenu()"
+                    aria-label="Mở menu">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+            <a class="logo"
+               href="@Url.Action("Index", "Home")">
+
+                MAISONÉ
+
+                <span class="logo-sub">
+                    FASHION BAGS
+                </span>
+
+            </a>
+
+
+            <nav class="right-nav">
+
+                <a class="nav-link"
+                   href="@Url.Action("Vouchers", "Service")">
+                    THÀNH VIÊN
+                </a>
+
+
+                <a class="header-icon"
+                   href="@Url.Action("Index", "Cart")">
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                    <span class="cart-number"
+                          id="cartNumber">
+                        0
+                    </span>
+
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- MOBILE MENU -->
+    <nav class="mobile-menu"
+         id="mobileMenu">
+
+        <a href="@Url.Action("Index", "Home")">
+            TRANG CHỦ
+        </a>
+
+        <a href="@Url.Action("Index", "Products")">
+            BỘ SƯU TẬP
+        </a>
+
+        <a href="@Url.Action("Vouchers", "Service")">
+            THÀNH VIÊN
+        </a>
+
+        <a href="@Url.Action("Index", "Orders")">
+            ĐƠN HÀNG
+        </a>
+
+    </nav>
+
+
+    <!-- MAIN -->
+    <main class="page-shell customer-center">
+
+
+        <!-- CUSTOMER HEADER -->
+        <div class="collection-head">
+
+            <div>
+
+                <span class="eyebrow">
+                    MY MAISONÉ
+                </span>
+
+                <h1 class="page-title">
+
+                    Xin chào,
+                    <span id="customerName">
+                        bạn
+                    </span>
+
+                </h1>
+
+                <p class="account-subtitle">
+                    Quản lý đơn hàng, thông tin cá nhân và quyền lợi
+                    thành viên của bạn.
+                </p>
+
+            </div>
+
+
+            <div class="customer-head-actions">
+
+                <a class="ui-btn light"
+                   href="@Url.Action("Index", "Products")">
+
+                    TIẾP TỤC MUA SẮM
+
+                </a>
+
+
+                <button class="ui-btn customer-logout"
+                        id="logoutButton"
+                        type="button">
+
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+
+                    ĐĂNG XUẤT
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- MEMBERSHIP -->
+        <section class="customer-membership-card">
+
+            <div>
+
+                <span class="eyebrow">
+                    HẠNG THÀNH VIÊN HIỆN TẠI
+                </span>
+
+                <h2>
+                    SILVER
+                </h2>
+
+                <p>
+                    Bạn đang có <strong>1.280 điểm</strong>
+                    · Còn 720 điểm để lên GOLD.
+                </p>
+
+
+                <div class="points-progress">
+
+                    <span style="width:64%"></span>
+
+                </div>
+
+            </div>
+
+
+            <a class="ui-btn"
+               href="@Url.Action("Vouchers", "Service")">
+
+                XEM HẠNG & VOUCHER
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+        </section>
+
+
+        <!-- CUSTOMER CENTER -->
+        <section class="customer-center-grid"
+                 aria-label="Quản lý tài khoản">
+
+
+            <!-- ĐƠN HÀNG -->
+            <a class="ui-card"
+               href="@Url.Action("Index", "Orders")">
+
+                <i class="fa-solid fa-receipt"></i>
+
+                <h2>
+                    Đơn hàng
+                </h2>
+
+                <p>
+                    Theo dõi đơn đã đặt, gửi yêu cầu đổi trả
+                    hoặc liên hệ khi đơn đang giao.
+                </p>
+
+            </a>
+
+
+            <!-- BẢO HÀNH -->
+            <a class="ui-card"
+               href="@Url.Action("Warranty", "Service")">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <h2>
+                    Bảo hành
+                </h2>
+
+                <p>
+                    Gửi yêu cầu kiểm tra sản phẩm và tải ảnh
+                    minh chứng.
+                </p>
+
+            </a>
+
+
+            <!-- ĐỔI TRẢ -->
+            <a class="ui-card"
+               href="@Url.Action("Returns", "Service")">
+
+                <i class="fa-solid fa-rotate-left"></i>
+
+                <h2>
+                    Đổi trả
+                </h2>
+
+                <p>
+                    Gửi yêu cầu đổi trả cho sản phẩm trong đơn
+                    đã nhận.
+                </p>
+
+            </a>
+
+
+            <!-- HỖ TRỢ -->
+            <a class="ui-card"
+               href="@Url.Action("Support", "Service")">
+
+                <i class="fa-solid fa-comments"></i>
+
+                <h2>
+                    Hỗ trợ
+                </h2>
+
+                <p>
+                    Nhắn tin trao đổi với bộ phận tư vấn Maisoné.
+                </p>
+
+            </a>
+
+
+            <!-- THÔNG TIN CÁ NHÂN -->
+            <a class="ui-card"
+               href="@Url.Action("Profile", "Account")">
+
+                <i class="fa-regular fa-user"></i>
+
+                <h2>
+                    Thông tin cá nhân
+                </h2>
+
+                <p>
+                    Cập nhật thông tin liên hệ và địa chỉ của bạn.
+                </p>
+
+            </a>
+
+
+            <!-- YÊU THÍCH -->
+            <a class="ui-card"
+               href="@Url.Action("Index", "Wishlist")">
+
+                <i class="fa-regular fa-heart"></i>
+
+                <h2>
+                    Sản phẩm yêu thích
+                </h2>
+
+                <p>
+                    Xem lại những thiết kế bạn đã lưu.
+                </p>
+
+            </a>
+
+        </section>
+
+
+        <!-- DEMO NOTE -->
+        <p class="demo-disclaimer">
+            Hạng thành viên và số điểm là dữ liệu mẫu
+            của giao diện demo.
+        </p>
+
+    </main>
+
+
+    <!-- TOAST -->
+    <div id="toast"
+         class="toast"
+         role="status"
+         aria-live="polite">
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="~/Scripts/Java/data.js"></script>
+
+    <script src="~/Scripts/Java/common.js"></script>
+
+    <script src="~/Scripts/Java/customer.js"></script>
+
+</body>
+
+</html>

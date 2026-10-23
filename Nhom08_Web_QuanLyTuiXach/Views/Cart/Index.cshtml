@@ -1,0 +1,414 @@
+﻿@{
+    ViewBag.Title = "Giỏ hàng · MAISONÉ";
+}
+
+<!doctype html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <title>Giỏ hàng · MAISONÉ</title>
+
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap">
+
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <link rel="stylesheet"
+          href="~/Content/css/style.css">
+
+</head>
+
+
+<body class="cart-page">
+
+
+    <!-- ANNOUNCEMENT -->
+    <div class="announcement">
+        MAISONÉ · SẢN PHẨM BẠN ĐÃ CHỌN
+    </div>
+
+
+    <!-- HEADER -->
+    <header class="header storefront-header">
+
+        <div class="header-inner">
+
+
+            <!-- LEFT NAV -->
+            <nav class="left-nav">
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Home")">
+
+                    TRANG CHỦ
+
+                </a>
+
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Products")">
+
+                    TIẾP TỤC MUA SẮM
+
+                </a>
+
+            </nav>
+
+
+            <!-- MOBILE BUTTON -->
+            <button class="mobile-button"
+                    type="button"
+                    onclick="toggleMobileMenu()"
+                    aria-label="Mở menu">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+            <!-- LOGO -->
+            <a class="logo"
+               href="@Url.Action("Index", "Home")">
+
+                MAISONÉ
+
+                <span class="logo-sub">
+                    BAGS & ACCESSORIES
+                </span>
+
+            </a>
+
+
+            <!-- RIGHT NAV -->
+            <nav class="right-nav">
+
+                <a class="account-button"
+                   href="@Url.Action("Login", "Account")">
+
+                    <i class="fa-regular fa-user"></i>
+
+                    <span>
+                        TÀI KHOẢN
+                    </span>
+
+                </a>
+
+
+                <a class="header-icon"
+                   href="@Url.Action("Index", "Cart")"
+                   aria-label="Giỏ hàng">
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                    <span class="cart-number"
+                          id="cartNumber">
+                        0
+                    </span>
+
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- MOBILE MENU -->
+    <nav class="mobile-menu"
+         id="mobileMenu">
+
+        <a href="@Url.Action("Index", "Home")">
+            TRANG CHỦ
+        </a>
+
+        <a href="@Url.Action("Index", "Products")">
+            TIẾP TỤC MUA SẮM
+        </a>
+
+    </nav>
+
+
+
+    <!-- MAIN -->
+    <main class="page-shell cart-page-shell">
+
+
+        <!-- BREADCRUMB -->
+        <div class="service-breadcrumb">
+
+            <a href="@Url.Action("Index", "Home")">
+                Trang chủ
+            </a>
+
+            <span>
+                /
+            </span>
+
+            <span>
+                Giỏ hàng
+            </span>
+
+        </div>
+
+
+
+        <!-- PAGE HEADING -->
+        <div class="cart-page-heading">
+
+            <div>
+
+                <span class="eyebrow">
+                    YOUR MAISONÉ EDIT
+                </span>
+
+                <h1 class="page-title">
+                    Giỏ hàng
+                </h1>
+
+                <p>
+                    Các thiết kế bạn chọn đang được giữ tại đây.
+                </p>
+
+            </div>
+
+
+            <a class="text-link"
+               href="@Url.Action("Index", "Products")">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                TIẾP TỤC KHÁM PHÁ
+
+            </a>
+
+        </div>
+
+
+
+        <!-- CART LAYOUT -->
+        <div class="cart-layout">
+
+
+            <!-- CART ITEMS -->
+            <section class="cart-items-panel">
+
+
+                <div class="cart-panel-heading">
+
+                    <h2>
+                        Sản phẩm của bạn
+                    </h2>
+
+
+                    <div class="cart-select-controls">
+
+                        <label>
+
+                            <input id="selectAllCartItems"
+                                   type="checkbox"
+                                   onchange="toggleAllCartItems(this.checked)">
+
+                            Chọn tất cả
+
+                        </label>
+
+
+                        <span id="cartItemCount">
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div id="cartItems">
+                </div>
+
+            </section>
+
+
+
+            <!-- SUMMARY -->
+            <aside class="cart-summary-panel">
+
+
+                <span class="eyebrow">
+                    ORDER SUMMARY
+                </span>
+
+
+                <h2>
+                    Tóm tắt đơn hàng
+                </h2>
+
+
+
+                <!-- VOUCHER -->
+                <div class="voucher-shop-box">
+
+                    <div>
+
+                        <span>
+                            ƯU ĐÃI MAISONÉ
+                        </span>
+
+                        <b>
+                            Dùng đồng thời 1 mã giảm giá sản phẩm
+                            và 1 mã vận chuyển
+                        </b>
+
+                    </div>
+
+
+                    <button class="ui-btn light"
+                            type="button"
+                            onclick="openVoucherModal()">
+
+                        CHỌN VOUCHER
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- SUMMARY -->
+                <div id="summary">
+                </div>
+
+
+
+                <!-- CHECKOUT -->
+                <a class="ui-btn cart-checkout-button"
+                   id="checkoutLink"
+                   href="@Url.Action("Checkout", "Cart")">
+
+                    TIẾN HÀNH THANH TOÁN
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+
+
+                <!-- TRUST NOTE -->
+                <div class="cart-trust-note">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <span>
+                        Thanh toán demo an toàn ·
+                        Chưa phát sinh thanh toán thật
+                    </span>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- VOUCHER MODAL -->
+    <div class="voucher-modal"
+         id="voucherModal"
+         onclick="if(event.target===this)closeVoucherModal()">
+
+
+        <div class="voucher-modal-box">
+
+
+            <div class="voucher-modal-head">
+
+                <div>
+
+                    <span class="eyebrow">
+                        SHOP VOUCHERS
+                    </span>
+
+                    <h2>
+                        Voucher của bạn
+                    </h2>
+
+                </div>
+
+
+                <button type="button"
+                        aria-label="Đóng"
+                        onclick="closeVoucherModal()">
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+            <div id="voucherList">
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- TOAST -->
+    <div id="toast"
+         class="toast"
+         role="status"
+         aria-live="polite">
+    </div>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+    window.mvcRoot = '@Url.Content("~/Content/")';
+
+    const checkoutUrl =
+        '@Url.Action("Checkout", "Cart")';
+
+    const productsUrl =
+        '@Url.Action("Index", "Products")';
+
+    const productDetailUrl =
+        '@Url.Action("Detail", "Products")';
+
+    </script>
+
+    <script src="@Url.Content("~/Scripts/Java/data.js")"></script>
+    <script src="@Url.Content("~/Scripts/Java/common.js")"></script>
+    
+    <script src="@Url.Content("~/Scripts/Java/vouchers.js")"></script>
+    <script src="@Url.Content("~/Scripts/Java/cart.js")"></script>
+
+
+</body>
+
+</html>

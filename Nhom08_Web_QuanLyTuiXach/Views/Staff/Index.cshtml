@@ -1,0 +1,633 @@
+﻿@{
+    ViewBag.Title = "Lịch làm nhân viên · MAISONÉ";
+}
+
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <title>Lịch làm nhân viên · MAISONÉ</title>
+</head>
+
+<body class="admin-body staff-portal-body">
+
+    <div class="admin-app">
+
+        <!-- SIDEBAR -->
+        <aside class="admin-sidebar">
+
+            <div class="admin-brand">
+                MAISONÉ
+                <small>STAFF PORTAL</small>
+            </div>
+
+            <div class="admin-user">
+                <i class="fa-solid fa-circle-user"></i>
+
+                <div>
+                    <b data-admin-name>Nhân viên</b>
+                    <span>Nhân viên bán hàng</span>
+                </div>
+            </div>
+
+            <nav>
+
+                <a class="active"
+                   href="#staffOpenShifts"
+                   id="staffShiftNav">
+                    <i class="fa-solid fa-calendar-plus"></i>
+                    Đăng ký ca part-time
+                </a>
+
+                <a href="#staffProfile">
+                    <i class="fa-solid fa-id-card"></i>
+                    Hồ sơ cá nhân
+                </a>
+
+                <a href="#staffAttendanceLeavePanel">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    Nghỉ phép / chấm công
+                </a>
+
+                <a href="#staffInbox"
+                   data-permission="support">
+                    <i class="fa-solid fa-headset"></i>
+                    Hỗ trợ khách hàng
+                </a>
+
+                <a href="@Url.Action("Products", "Admin")"
+                   data-permission="products">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    Sản phẩm
+                </a>
+
+                <a href="@Url.Action("Orders", "Admin")"
+                   data-permission="orders">
+                    <i class="fa-solid fa-receipt"></i>
+                    Đơn hàng
+                </a>
+
+                <a href="@Url.Action("Inventory", "Admin")"
+                   data-permission="inventory">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    Kho hàng
+                </a>
+
+                <a href="@Url.Action("Customers", "Admin")"
+                   data-permission="customers">
+                    <i class="fa-solid fa-users"></i>
+                    Khách hàng
+                </a>
+
+                <a href="@Url.Action("Marketing", "Admin")"
+                   data-permission="vouchers">
+                    <i class="fa-solid fa-ticket"></i>
+                    Voucher
+                </a>
+
+            </nav>
+
+            <div class="admin-sidebar-bottom">
+
+                <a href="@Url.Action("Index", "Home")">
+                    <i class="fa-solid fa-store"></i>
+                    Xem cửa hàng
+                </a>
+
+                <a href="@Url.Action("Index", "Home")"
+                   data-logout>
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Đăng xuất
+                </a>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN -->
+        <main class="admin-main">
+
+            <!-- TOPBAR -->
+            <header class="admin-topbar">
+
+                <div>
+                    <span class="admin-breadcrumb"
+                          id="staffPageBreadcrumb">
+                        STAFF / WORK SCHEDULE
+                    </span>
+
+                    <h1 id="staffPageTitle">
+                        Lịch làm của tôi
+                    </h1>
+                </div>
+
+                <div class="admin-top-actions">
+                    <span class="admin-avatar">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </span>
+                </div>
+
+            </header>
+
+
+            <!-- CONTENT -->
+            <section class="admin-content staff-workspace">
+
+
+                <!-- ================= HỒ SƠ CÁ NHÂN ================= -->
+                <section class="ui-card staff-personal-profile"
+                         id="staffProfile"
+                         data-staff-panel="profile">
+
+                    <div class="admin-section-heading">
+
+                        <div>
+                            <span class="eyebrow">
+                                MY EMPLOYEE PROFILE
+                            </span>
+
+                            <h2>
+                                Hồ sơ cá nhân
+                            </h2>
+
+                            <p>
+                                Thông tin hồ sơ được quản lý lưu để phục vụ
+                                việc phân ca và liên hệ công việc.
+                            </p>
+                        </div>
+
+                        <button class="ui-btn"
+                                id="staffProfilePrint"
+                                type="button">
+                            <i class="fa-solid fa-print"></i>
+                            IN / LƯU PDF
+                        </button>
+
+                    </div>
+
+
+                    <div class="staff-profile-identity staff-self-identity">
+
+                        <span class="staff-profile-icon">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+
+                        <div>
+                            <h3 id="staffProfileName">
+                                Nhân viên
+                            </h3>
+
+                            <p id="staffProfileRole"></p>
+                        </div>
+
+                    </div>
+
+
+                    <form class="admin-compact-form staff-personal-profile-form"
+                          id="staffPersonalProfileForm">
+
+                        <h3>
+                            Thông tin cá nhân
+                        </h3>
+
+                        <div class="admin-product-fields">
+
+                            <label>
+                                Họ và tên
+                                <input name="name"
+                                       maxlength="100"
+                                       required>
+                            </label>
+
+                            <label>
+                                Ngày sinh
+                                <input name="dateOfBirth"
+                                       type="date"
+                                       required>
+                            </label>
+
+                            <label>
+                                Giới tính
+                                <select name="gender" required>
+                                    <option value="">
+                                        Chọn giới tính
+                                    </option>
+                                    <option value="Nữ">Nữ</option>
+                                    <option value="Nam">Nam</option>
+                                    <option value="Khác">Khác</option>
+                                </select>
+                            </label>
+
+                            <label>
+                                Số CCCD
+                                <input name="identityNumber"
+                                       inputmode="numeric"
+                                       maxlength="12"
+                                       pattern="[0-9]{12}"
+                                       required>
+                            </label>
+
+                            <label>
+                                Số điện thoại
+                                <input name="phone"
+                                       type="tel"
+                                       inputmode="numeric"
+                                       maxlength="10"
+                                       pattern="0[0-9]{9}"
+                                       required>
+                            </label>
+
+                            <label>
+                                Địa chỉ
+                                <input name="address"
+                                       maxlength="220"
+                                       required>
+                            </label>
+
+                            <label>
+                                Người liên hệ khẩn cấp
+                                <input name="emergencyContactName"
+                                       maxlength="100">
+                            </label>
+
+                            <label>
+                                Điện thoại khẩn cấp
+                                <input name="emergencyContactPhone"
+                                       type="tel"
+                                       inputmode="numeric"
+                                       maxlength="10"
+                                       pattern="0[0-9]{9}">
+                            </label>
+
+                        </div>
+
+                        <button class="collection-link"
+                                type="submit">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            LƯU THÔNG TIN CÁ NHÂN
+                        </button>
+
+                    </form>
+
+
+                    <div class="staff-profile-details"
+                         id="staffProfileDetails">
+                    </div>
+
+                    <p class="admin-product-hint">
+                        Email đăng nhập, khu vực, hình thức làm việc
+                        và đơn giá do quản lý cập nhật.
+                    </p>
+
+                </section>
+
+
+                <!-- ================= CHẤM CÔNG + NGHỈ PHÉP ================= -->
+                <div class="admin-hr-grid"
+                     id="staffAttendanceLeavePanel"
+                     data-staff-panel="attendance-leave">
+
+
+                    <!-- CHẤM CÔNG -->
+                    <section class="ui-card">
+
+                        <div class="admin-section-heading">
+
+                            <div>
+                                <span class="eyebrow">
+                                    MY ATTENDANCE
+                                </span>
+
+                                <h2>
+                                    Chấm công hôm nay
+                                </h2>
+                            </div>
+
+                        </div>
+
+                        <p id="staffTodayAttendance"
+                           class="admin-report-note">
+                            Chưa chấm công.
+                        </p>
+
+                        <div class="admin-row-actions">
+
+                            <button class="collection-link"
+                                    id="staffClockIn"
+                                    type="button">
+                                VÀO CA
+                            </button>
+
+                            <button class="ui-btn"
+                                    id="staffClockOut"
+                                    type="button">
+                                KẾT CA
+                            </button>
+
+                        </div>
+
+                        <p id="staffTodayShift"
+                           class="admin-product-hint">
+                        </p>
+
+                    </section>
+
+
+                    <!-- NGHỈ PHÉP -->
+                    <section class="ui-card">
+
+                        <div class="admin-section-heading">
+
+                            <div>
+                                <span class="eyebrow">
+                                    LEAVE MANAGEMENT
+                                </span>
+
+                                <h2>
+                                    Gửi yêu cầu nghỉ phép
+                                </h2>
+
+                                <p>
+                                    Quản lý hoặc admin sẽ xem xét
+                                    và quyết định hình thức nghỉ.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <form class="admin-compact-form"
+                              id="staffLeaveForm">
+
+                            <div class="admin-product-fields">
+
+                                <label>
+                                    Từ ngày
+                                    <input name="startDate"
+                                           type="date"
+                                           required>
+                                </label>
+
+                                <label>
+                                    Đến ngày
+                                    <input name="endDate"
+                                           type="date"
+                                           required>
+                                </label>
+
+                            </div>
+
+                            <label>
+                                Lý do nghỉ
+
+                                <textarea name="reason"
+                                          rows="3"
+                                          maxlength="350"
+                                          required
+                                          placeholder="Nhập lý do xin nghỉ..."></textarea>
+                            </label>
+
+                            <button class="collection-link"
+                                    type="submit">
+                                GỬI QUẢN LÝ
+                            </button>
+
+                        </form>
+
+
+                        <div class="staff-leave-history">
+
+                            <div class="admin-section-heading">
+
+                                <div>
+                                    <span class="eyebrow">
+                                        MY REQUESTS
+                                    </span>
+
+                                    <h2>
+                                        Trạng thái đơn nghỉ của tôi
+                                    </h2>
+                                </div>
+
+                            </div>
+
+
+                            <div class="admin-table-scroll">
+
+                                <table class="data-table">
+
+                                    <thead>
+                                        <tr>
+                                            <th>Thời gian nghỉ</th>
+                                            <th>Lý do</th>
+                                            <th>Hình thức nghỉ</th>
+                                            <th>Trạng thái</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody id="staffLeaveRows">
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                            <p class="admin-empty-state"
+                               id="staffLeaveEmpty"
+                               hidden>
+                                Bạn chưa gửi yêu cầu nghỉ.
+                            </p>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+
+                <!-- ================= CA PART-TIME ================= -->
+                <section class="ui-card admin-history-card staff-open-shifts"
+                         id="staffOpenShifts"
+                         data-staff-panel="shifts">
+
+                    <div class="admin-section-heading">
+
+                        <div>
+
+                            <span class="eyebrow"
+                                  id="staffShiftEyebrow">
+                                PART-TIME SHIFTS
+                            </span>
+
+                            <h2 id="staffShiftTitle">
+                                Ca trống để đăng ký
+                            </h2>
+
+                            <p id="staffShiftDescription">
+                                Mỗi ca chỉ có một chỗ.
+                                Khi đã có người nhận,
+                                ca sẽ hiện trạng thái đã kín.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div id="staffShiftNotice"
+                         class="admin-product-hint">
+                    </div>
+
+
+                    <div id="staffShiftRegistration">
+
+                        <div class="staff-shift-grid"
+                             id="staffOpenShiftCards">
+                        </div>
+
+                        <p id="staffOpenShiftEmpty"
+                           class="admin-empty-state"
+                           hidden>
+                            Hiện chưa có ca part-time được mở.
+                        </p>
+
+                    </div>
+
+
+                    <div id="staffSchedulePanel">
+
+                        <h3 id="staffScheduleTitle">
+                            Ca đã đăng ký
+                        </h3>
+
+                        <p id="staffScheduleEmpty"
+                           class="admin-empty-state"
+                           hidden>
+                            Chưa có ca làm sắp tới.
+                        </p>
+
+                        <div class="admin-table-scroll">
+
+                            <table class="data-table">
+
+                                <thead>
+                                    <tr>
+                                        <th>Ngày</th>
+                                        <th>Ca / khu vực</th>
+                                        <th>Trạng thái</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="staffMyShiftRows">
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================= HỖ TRỢ KHÁCH HÀNG ================= -->
+                <section class="ui-card admin-support-card"
+                         id="staffInbox"
+                         data-permission="support"
+                         data-staff-panel="support">
+
+                    <div class="admin-support-heading">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                LIVE CUSTOMER CARE
+                            </span>
+
+                            <h2>
+                                Cuộc trò chuyện với khách
+                            </h2>
+
+                            <p>
+                                Tin nhắn khách gửi từ trang hỗ trợ
+                                và phản hồi của nhân viên được lưu
+                                trên trình duyệt này.
+                            </p>
+
+                        </div>
+
+                        <span class="support-online">
+                            <i></i>
+                            Hộp thư demo
+                        </span>
+
+                    </div>
+
+
+                    <div class="support-messages admin-support-messages"
+                         id="adminSupportMessages"
+                         aria-live="polite">
+                    </div>
+
+
+                    <form class="support-compose"
+                          id="adminSupportForm">
+
+                        <label class="sr-only"
+                               for="adminSupportInput">
+                            Phản hồi cho khách hàng
+                        </label>
+
+                        <input id="adminSupportInput"
+                               maxlength="500"
+                               required
+                               placeholder="Nhập phản hồi cho khách hàng...">
+
+                        <button class="ui-btn"
+                                type="submit">
+                            <i class="fa-solid fa-reply"></i>
+                            GỬI TƯ VẤN
+                        </button>
+
+                    </form>
+
+
+                    <p id="adminSupportStatus"
+                       class="demo-disclaimer">
+                        Tin nhắn được lưu trên trình duyệt demo này.
+                    </p>
+
+                </section>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- TOAST -->
+    <div id="toast"
+         class="toast"
+         role="status"
+         aria-live="polite">
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="~/Scripts/Java/data.js"></script>
+    <script src="~/Scripts/Java/common.js"></script>
+    <script src="~/Scripts/Java/date-picker.js"></script>
+    <script src="~/Scripts/Java/form-select.js"></script>
+    <script src="~/Scripts/Java/staff-portal.js"></script>
+    <script src="~/Scripts/Java/support-admin.js"></script>
+
+</body>
+</html>

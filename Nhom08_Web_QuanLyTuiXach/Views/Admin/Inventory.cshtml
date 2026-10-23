@@ -1,0 +1,667 @@
+﻿@{
+    ViewBag.Title = "Kho hàng · MAISONÉ Admin";
+}
+
+<!doctype html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet"
+          href="~/Content/css/style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <title>Kho hàng · MAISONÉ Admin</title>
+
+</head>
+
+
+<body class="admin-body">
+
+    <div class="admin-app">
+
+
+        <!-- SIDEBAR -->
+        <aside class="admin-sidebar">
+
+
+            <!-- BRAND -->
+            <div class="admin-brand">
+
+                MAISONÉ
+
+                <small>
+                    ADMIN CONSOLE
+                </small>
+
+            </div>
+
+
+            <!-- ADMIN USER -->
+            <div class="admin-user">
+
+                <i class="fa-solid fa-circle-user"></i>
+
+                <div>
+
+                    <b data-admin-name>
+                        System Admin
+                    </b>
+
+                    <span data-admin-role>
+                        Quản trị hệ thống
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- MENU -->
+            <nav>
+
+
+                <!-- TỔNG QUAN -->
+                <a href="@Url.Action("Index", "Admin")"
+                   data-permission="dashboard">
+
+                    <i class="fa-solid fa-gauge-high"></i>
+
+                    Tổng quan
+
+                </a>
+
+
+                <!-- SẢN PHẨM -->
+                <a href="@Url.Action("Products", "Admin")"
+                   data-permission="products">
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                    Sản phẩm
+
+                </a>
+
+
+                <!-- ĐƠN HÀNG -->
+                <a href="@Url.Action("Orders", "Admin")"
+                   data-permission="orders">
+
+                    <i class="fa-solid fa-receipt"></i>
+
+                    Đơn hàng & tài chính
+
+                </a>
+
+
+                <!-- KHO HÀNG -->
+                <a class="active"
+                   href="@Url.Action("Inventory", "Admin")"
+                   data-permission="inventory">
+
+                    <i class="fa-solid fa-boxes-stacked"></i>
+
+                    Kho hàng
+
+                </a>
+
+
+                <!-- KHÁCH HÀNG -->
+                <a href="@Url.Action("Customers", "Admin")"
+                   data-permission="customers">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    Khách hàng
+
+                </a>
+
+
+                <!-- VOUCHER -->
+                <a href="@Url.Action("Marketing", "Admin")"
+                   data-permission="vouchers">
+
+                    <i class="fa-solid fa-ticket"></i>
+
+                    Voucher
+
+                </a>
+
+
+                <!-- NHÂN SỰ -->
+                <a href="@Url.Action("Staff", "Admin")#personnel"
+                   data-permission="staff">
+
+                    <i class="fa-solid fa-users-gear"></i>
+
+                    Nhân sự
+
+                </a>
+
+
+                <!-- LỊCH LÀM -->
+                <a href="@Url.Action("Staff", "Admin")#schedule"
+                   data-permission="staff">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    Lịch làm
+
+                </a>
+
+
+            </nav>
+
+
+            <!-- SIDEBAR BOTTOM -->
+            <div class="admin-sidebar-bottom">
+
+
+                <!-- XEM WEBSITE -->
+                <a href="@Url.Action("Index", "Home")">
+
+                    <i class="fa-solid fa-store"></i>
+
+                    Xem website
+
+                </a>
+
+
+                <!-- ĐĂNG XUẤT -->
+                <a href="@Url.Action("Index", "Home")"
+                   data-logout>
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    Đăng xuất
+
+                </a>
+
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- MAIN -->
+        <main class="admin-main">
+
+
+            <!-- TOP BAR -->
+            <header class="admin-topbar">
+
+                <div>
+
+                    <span class="admin-breadcrumb">
+                        MAISONÉ / ADMIN
+                    </span>
+
+                    <h1>
+                        Kho hàng
+                    </h1>
+
+                </div>
+
+
+                <div class="admin-top-actions">
+
+                    <span class="admin-avatar">
+                        A
+                    </span>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- CONTENT -->
+            <section class="admin-content">
+
+
+                <!-- PAGE HEADER -->
+                <div class="collection-head">
+
+                    <div>
+
+                        <div class="section-number">
+                            INVENTORY / RECEIVING
+                        </div>
+
+                        <h1 class="page-title">
+                            Kho hàng
+                        </h1>
+
+                    </div>
+
+
+                    <button class="collection-link"
+                            id="openReceiptForm"
+                            type="button">
+
+                        + LẬP PHIẾU NHẬP
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- NOTE -->
+                <p class="admin-report-note">
+
+                    Lập phiếu để ghi nhận nhà cung cấp,
+                    số lượng và giá nhập.
+                    Lưu phiếu sẽ cộng số lượng vào tồn kho demo.
+
+                </p>
+
+
+
+                <!-- STATS -->
+                <div class="stats">
+
+
+                    <!-- SKU -->
+                    <div class="stat">
+
+                        <small>
+                            MÃ HÀNG ĐANG QUẢN LÝ
+                        </small>
+
+                        <b id="inventorySkuCount">
+                            0
+                        </b>
+
+                    </div>
+
+
+                    <!-- TOTAL -->
+                    <div class="stat">
+
+                        <small>
+                            TỔNG TỒN KHO
+                        </small>
+
+                        <b id="inventoryTotal">
+                            0
+                        </b>
+
+                    </div>
+
+
+                    <!-- LOW -->
+                    <div class="stat">
+
+                        <small>
+                            SẮP HẾT (≤ 5)
+                        </small>
+
+                        <b id="inventoryLow">
+                            0
+                        </b>
+
+                    </div>
+
+
+                    <!-- RECEIPTS -->
+                    <div class="stat">
+
+                        <small>
+                            PHIẾU NHẬP
+                        </small>
+
+                        <b id="inventoryReceipts">
+                            0
+                        </b>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- INVENTORY TABLE -->
+                <div class="ui-card">
+
+                    <div class="admin-table-scroll">
+
+                        <table class="data-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Sản phẩm
+                                    </th>
+
+                                    <th>
+                                        SKU
+                                    </th>
+
+                                    <th>
+                                        Giá bán
+                                    </th>
+
+                                    <th>
+                                        Tồn thực tế
+                                    </th>
+
+                                    <th>
+                                        Trạng thái
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="inventoryRows">
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PURCHASE HISTORY -->
+                <section class="ui-card admin-history-card">
+
+
+                    <div class="admin-section-heading">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                PURCHASE HISTORY
+                            </span>
+
+                            <h2>
+                                Phiếu nhập gần đây
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-table-scroll">
+
+                        <table class="data-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Mã phiếu
+                                    </th>
+
+                                    <th>
+                                        Ngày nhập
+                                    </th>
+
+                                    <th>
+                                        Nhà cung cấp
+                                    </th>
+
+                                    <th>
+                                        Sản phẩm
+                                    </th>
+
+                                    <th>
+                                        Số lượng
+                                    </th>
+
+                                    <th>
+                                        Giá nhập
+                                    </th>
+
+                                    <th>
+                                        Ghi chú
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="receiptRows">
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+                    <p class="admin-empty-state"
+                       id="receiptEmpty"
+                       hidden>
+
+                        Chưa có phiếu nhập.
+                        Tạo phiếu ở nút “Lập phiếu nhập”.
+
+                    </p>
+
+                </section>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+
+    <!-- RECEIPT MODAL -->
+    <div class="admin-product-modal"
+         id="receiptModal"
+         hidden>
+
+
+        <!-- BACKDROP -->
+        <div class="admin-product-backdrop"
+             data-close-receipt>
+        </div>
+
+
+        <!-- DIALOG -->
+        <section class="admin-product-dialog"
+                 role="dialog"
+                 aria-modal="true"
+                 aria-labelledby="receiptTitle">
+
+
+            <!-- CLOSE -->
+            <button class="admin-product-close"
+                    type="button"
+                    aria-label="Đóng"
+                    data-close-receipt>
+
+                &times;
+
+            </button>
+
+
+            <span class="section-number">
+                INVENTORY / RECEIVING
+            </span>
+
+
+            <h2 id="receiptTitle">
+                Lập phiếu nhập kho
+            </h2>
+
+
+            <!-- FORM -->
+            <form id="receiptForm">
+
+
+                <!-- PRODUCT -->
+                <label>
+
+                    Sản phẩm
+
+                    <select name="productId"
+                            id="receiptProduct"
+                            required>
+                    </select>
+
+                </label>
+
+
+
+                <!-- FIELDS -->
+                <div class="admin-product-fields">
+
+
+                    <!-- QUANTITY -->
+                    <label>
+
+                        Số lượng nhập
+
+                        <input name="quantity"
+                               type="number"
+                               min="1"
+                               step="1"
+                               required>
+
+                    </label>
+
+
+                    <!-- UNIT COST -->
+                    <label>
+
+                        Giá nhập / sản phẩm (đ)
+
+                        <input name="unitCost"
+                               type="number"
+                               min="0"
+                               step="1000"
+                               required>
+
+                    </label>
+
+
+                    <!-- DATE -->
+                    <label>
+
+                        Ngày nhập
+
+                        <input name="receivedAt"
+                               type="date"
+                               required>
+
+                    </label>
+
+
+                    <!-- SUPPLIER -->
+                    <label>
+
+                        Nhà cung cấp
+
+                        <input name="supplier"
+                               maxlength="100"
+                               required>
+
+                    </label>
+
+                </div>
+
+
+
+                <!-- NOTE -->
+                <label>
+
+                    Ghi chú
+
+                    <textarea name="note"
+                              rows="3"
+                              maxlength="250"
+                              placeholder="Số hóa đơn, tình trạng lô hàng..."></textarea>
+
+                </label>
+
+
+                <!-- HINT -->
+                <p class="admin-product-hint">
+
+                    Lưu phiếu sẽ cộng số lượng nhập
+                    vào tồn thực tế của sản phẩm.
+
+                </p>
+
+
+
+                <!-- ACTIONS -->
+                <div class="admin-product-actions">
+
+
+                    <!-- CANCEL -->
+                    <button class="ui-btn"
+                            type="button"
+                            data-close-receipt>
+
+                        HỦY
+
+                    </button>
+
+
+                    <!-- SAVE -->
+                    <button class="collection-link"
+                            type="submit">
+
+                        LƯU PHIẾU NHẬP
+
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </section>
+
+    </div>
+
+
+
+    <!-- TOAST -->
+    <div id="toast"
+         class="toast"
+         role="status"
+         aria-live="polite">
+    </div>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="~/Scripts/Java/data.js"></script>
+
+    <script src="~/Scripts/Java/common.js"></script>
+
+    <script src="~/Scripts/Java/products.js"></script>
+
+    <script src="~/Scripts/Java/date-picker.js"></script>
+
+    <script src="~/Scripts/Java/form-select.js"></script>
+
+    <script src="~/Scripts/Java/admin-inventory.js"></script>
+
+
+</body>
+
+</html>

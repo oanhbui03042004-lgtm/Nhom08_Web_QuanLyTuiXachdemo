@@ -1,0 +1,193 @@
+﻿@{
+    ViewBag.Title = "Profile";
+}
+
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet"
+          href="~/Content/css/style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <title>Profile</title>
+</head>
+
+<body>
+
+    <div class="announcement">
+        MAISONÉ · PREMIUM BAG STORE
+    </div>
+
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="header-inner">
+
+            <!-- LEFT NAV -->
+            <nav class="left-nav">
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Home")">
+                    HOME
+                </a>
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Products")">
+                    COLLECTION
+                </a>
+
+            </nav>
+
+
+            <!-- LOGO -->
+            <a class="logo"
+               href="@Url.Action("Index", "Home")">
+
+                MAISONÉ
+
+                <span class="logo-sub">
+                    FASHION BAGS
+                </span>
+
+            </a>
+
+
+            <!-- RIGHT NAV -->
+            <nav class="right-nav">
+
+                <!-- ACCOUNT -->
+                <a class="nav-link"
+                   href="@Url.Action("Login", "Account")"
+                   aria-label="Tài khoản">
+
+                    <i class="fa-regular fa-user"></i>
+
+                </a>
+
+
+                <!-- WISHLIST -->
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Wishlist")"
+                   aria-label="Sản phẩm yêu thích">
+
+                    <i class="fa-regular fa-heart"></i>
+
+                </a>
+
+
+                <!-- CART -->
+                <a class="header-icon"
+                   href="@Url.Action("Index", "Cart")"
+                   aria-label="Giỏ hàng">
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                    <span class="cart-number"
+                          id="cartNumber">
+                        0
+                    </span>
+
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- MAIN -->
+    <main class="page-shell">
+
+        <section class="ui-card">
+
+            <div class="hero-label">
+                MY ACCOUNT
+            </div>
+
+            <h1 class="page-title">
+                Tài khoản cá nhân
+            </h1>
+
+
+            <div class="account-form">
+
+
+                <!-- HỌ TÊN -->
+                <div class="account-field">
+
+                    <label>
+                        Họ tên
+                    </label>
+
+                    <input class="ui-input"
+                           value="Khách hàng Maisoné">
+
+                </div>
+
+
+                <!-- EMAIL -->
+                <div class="account-field">
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input class="ui-input"
+                           value="customer@bagstore.vn">
+
+                </div>
+
+
+                <!-- ĐIỆN THOẠI -->
+                <div class="account-field">
+
+                    <label>
+                        Điện thoại
+                    </label>
+
+                    <input class="ui-input"
+                           value="0909000001">
+
+                </div>
+
+
+                <!-- SAVE -->
+                <button class="ui-btn"
+                        type="button"
+                        onclick="toast('Đã lưu thông tin')">
+
+                    LƯU THAY ĐỔI
+
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- TOAST -->
+    <div id="toast"
+         class="toast">
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="~/Scripts/Java/data.js"></script>
+
+    <script src="~/Scripts/Java/common.js"></script>
+
+</body>
+
+</html>

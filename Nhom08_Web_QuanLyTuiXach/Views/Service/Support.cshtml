@@ -1,0 +1,245 @@
+﻿<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nhắn tin hỗ trợ · MAISONÉ</title>
+
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body class="service-page">
+
+    <div class="announcement">MAISONÉ · CUSTOMER CARE</div>
+
+    <header class="header">
+        <div class="header-inner">
+
+            <nav class="left-nav">
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Home")">
+                    TRANG CHỦ
+                </a>
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Products")">
+                    BỘ SƯU TẬP
+                </a>
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Orders")">
+                    ĐƠN HÀNG
+                </a>
+            </nav>
+
+            <button class="mobile-button"
+                    type="button"
+                    onclick="toggleMobileMenu()"
+                    aria-label="Mở menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <a class="logo"
+               href="@Url.Action("Index", "Home")">
+                MAISONÉ
+                <span class="logo-sub">FASHION BAGS</span>
+            </a>
+
+            <nav class="right-nav">
+
+                <a class="nav-link"
+                   href="@Url.Action("Login", "Account")">
+                    TÀI KHOẢN
+                </a>
+
+                <a class="header-icon"
+                   href="@Url.Action("Index", "Cart")">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-number" id="cartNumber">0</span>
+                </a>
+
+            </nav>
+
+        </div>
+    </header>
+
+    <nav class="mobile-menu"
+         id="mobileMenu"
+         aria-label="Menu mobile">
+
+        <a href="@Url.Action("Index", "Home")">
+            TRANG CHỦ
+        </a>
+
+        <a href="@Url.Action("Index", "Products")">
+            BỘ SƯU TẬP
+        </a>
+
+        <a href="@Url.Action("Index", "Orders")">
+            ĐƠN HÀNG
+        </a>
+
+        <a href="@Url.Action("Index", "Cart")">
+            GIỎ HÀNG
+        </a>
+
+    </nav>
+
+    <main class="page-shell service-shell">
+
+        <div class="service-breadcrumb">
+
+            <a href="@Url.Action("Index", "Home")">
+                Trang chủ
+            </a>
+
+            <span>/</span>
+
+            <span>Hỗ trợ</span>
+
+        </div>
+
+        <section class="service-hero">
+
+            <span class="eyebrow">
+                CUSTOMER CARE · 09:00–21:00
+            </span>
+
+            <h1 class="page-title">
+                Chúng tôi sẵn sàng<br>
+                <em>lắng nghe bạn.</em>
+            </h1>
+
+            <p>
+                Nhắn tin để được tư vấn sản phẩm, đơn hàng, đổi trả hoặc bảo hành.
+                Nhân viên có thể phản hồi ngay trong cuộc trò chuyện.
+            </p>
+
+        </section>
+
+        <section class="support-panel">
+
+            <div class="support-panel-head">
+
+                <div>
+                    <span class="eyebrow">
+                        MAISONÉ LIVE SUPPORT
+                    </span>
+
+                    <h2>
+                        Cuộc trò chuyện của bạn
+                    </h2>
+                </div>
+
+                <span class="support-online">
+                    <i></i> Bộ phận tư vấn
+                </span>
+
+            </div>
+
+            <p class="support-help">
+                Gửi câu hỏi về sản phẩm, đơn hàng hoặc chính sách.
+                Nhân viên xem tin nhắn trong trang quản lý khách hàng
+                và phản hồi tại đây.
+            </p>
+
+            <div class="support-messages"
+                 id="supportMessages"
+                 aria-live="polite">
+            </div>
+
+            <!-- Form khách hàng -->
+            <form class="support-compose"
+                  id="supportCustomerForm">
+
+                <label class="sr-only"
+                       for="supportCustomerInput">
+                    Tin nhắn của bạn
+                </label>
+
+                <input id="supportCustomerInput"
+                       maxlength="500"
+                       required
+                       placeholder="Nhập câu hỏi cần hỗ trợ...">
+
+                <button class="ui-btn"
+                        type="submit"
+                        aria-label="Gửi tin nhắn">
+
+                    <i class="fa-solid fa-paper-plane"></i>
+                    GỬI
+
+                </button>
+
+            </form>
+
+            <!-- Form phản hồi nhân viên -->
+            <form class="support-compose"
+                  id="supportStaffForm"
+                  hidden>
+
+                <label class="sr-only"
+                       for="supportStaffInput">
+                    Phản hồi của nhân viên
+                </label>
+
+                <input id="supportStaffInput"
+                       maxlength="500"
+                       required
+                       placeholder="Nhập phản hồi cho khách hàng...">
+
+                <button class="ui-btn"
+                        type="submit"
+                        aria-label="Gửi phản hồi">
+
+                    <i class="fa-solid fa-reply"></i>
+                    TRẢ LỜI
+
+                </button>
+
+            </form>
+
+            <p class="demo-disclaimer">
+                Bản demo giao diện: tin nhắn được lưu trên trình duyệt này
+                để trang quản lý khách hàng có thể đọc và phản hồi.
+                Chưa kết nối máy chủ chat.
+            </p>
+
+        </section>
+
+        <div class="service-footer-actions">
+
+            <a class="ui-btn"
+               href="@Url.Action("Index", "Products")">
+                TIẾP TỤC MUA SẮM
+            </a>
+
+            <a class="ui-btn light"
+               href="@Url.Action("Returns", "Service")">
+                GỬI YÊU CẦU ĐỔI TRẢ
+            </a>
+
+            <a class="ui-btn light"
+               href="@Url.Action("Warranty", "Service")">
+                YÊU CẦU BẢO HÀNH
+            </a>
+
+        </div>
+
+    </main>
+
+    <div id="toast"
+         class="toast"
+         role="status"
+         aria-live="polite">
+    </div>
+
+    <!-- JS giữ nguyên logic -->
+    <script src="~/Scripts/Java/data.js"></script>
+    <script src="~/Scripts/Java/common.js"></script>
+    <script src="~/Scripts/Java/service.js"></script>
+
+</body>
+</html>

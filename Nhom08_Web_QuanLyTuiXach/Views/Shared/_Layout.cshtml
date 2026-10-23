@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+
+    <!-- Nạp Bootstrap CSS -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap.css")">
+
+    <!-- Nạp style.css của dự án -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/style.css")">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body class="@ViewBag.BodyClass"
+      data-collection="@ViewBag.CollectionKey">
+
+
+    @RenderBody()
+
+
+    <!-- ================================
+         MVC ROOT
+    ================================= -->
+
+    <script>
+        window.mvcRoot = '@Url.Content("~/")';
+    </script>
+
+
+    <!-- ================================
+         MVC URLS
+    ================================= -->
+
+    <script>
+
+        window.mvcUrls = {
+
+            home: '@Url.Action("Index", "Home")',
+
+            products: '@Url.Action("Index", "Products")',
+
+            productDetail: '@Url.Action("Detail", "Products")',
+
+
+            autumn: '@Url.Action("Autumn", "Collection")',
+
+            summer: '@Url.Action("Summer", "Collection")',
+
+            work: '@Url.Action("Work", "Collection")',
+
+            weekend: '@Url.Action("Weekend", "Collection")',
+
+
+            login: '@Url.Action("Login", "Account")',
+
+            register: '@Url.Action("Register", "Account")',
+
+            forgotPassword:
+                '@Url.Action("ForgotPassword", "Account")',
+
+
+            customer:
+                '@Url.Action("Customer", "Account")',
+
+            profile:
+                '@Url.Action("Profile", "Account")',
+
+            addresses:
+                '@Url.Action("Addresses", "Account")',
+
+
+            cart:
+                '@Url.Action("Index", "Cart")',
+
+            checkout:
+                '@Url.Action("Checkout", "Cart")',
+
+
+            wishlist:
+                '@Url.Action("Index", "Wishlist")',
+
+            orders:
+                '@Url.Action("Index", "Orders")',
+
+
+            shipping:
+                '@Url.Action("Shipping", "Service")',
+
+            returns:
+                '@Url.Action("Returns", "Service")',
+
+            warranty:
+                '@Url.Action("Warranty", "Service")',
+
+            support:
+                '@Url.Action("Support", "Service")',
+
+            vouchers:
+                '@Url.Action("Vouchers", "Service")',
+
+
+            admin:
+                '@Url.Action("Index", "Admin")',
+
+            adminProducts:
+                '@Url.Action("Products", "Admin")',
+
+            adminOrders:
+                '@Url.Action("Orders", "Admin")',
+
+            adminInventory:
+                '@Url.Action("Inventory", "Admin")',
+
+            adminCustomers:
+                '@Url.Action("Customers", "Admin")',
+
+            adminMarketing:
+                '@Url.Action("Marketing", "Admin")',
+
+            adminStaff:
+                '@Url.Action("Staff", "Admin")',
+
+
+            manager:
+                '@Url.Action("Index", "Manager")',
+
+            staff:
+                '@Url.Action("Portal", "Staff")'
+
+        };
+
+    </script>
+
+
+    <!-- ================================
+         GLOBAL JAVASCRIPT
+    ================================= -->
+
+    <script src="@Url.Content("~/Scripts/Java/data.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/Java/common.js")"></script>
+
+
+    <!-- ================================
+         PAGE JAVASCRIPT
+    ================================= -->
+
+    @RenderSection("Scripts", required: false)
+
+
+</body>
+
+</html>

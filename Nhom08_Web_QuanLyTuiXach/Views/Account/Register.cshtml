@@ -1,0 +1,303 @@
+﻿@{
+    ViewBag.Title = "Tạo tài khoản · MAISONÉ";
+}
+
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <title>Tạo tài khoản · MAISONÉ</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="~/Content/css/style.css">
+</head>
+
+<body class="account-auth-page">
+
+    <!-- ANNOUNCEMENT -->
+    <div class="announcement">
+        MAISONÉ · TẠO TÀI KHOẢN THÀNH VIÊN
+    </div>
+
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="header-inner">
+
+            <!-- LEFT NAV -->
+            <nav class="left-nav">
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Home")">
+                    TRANG CHỦ
+                </a>
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Products")">
+                    SẢN PHẨM
+                </a>
+
+            </nav>
+
+
+            <!-- MOBILE BUTTON -->
+            <button class="mobile-button"
+                    type="button"
+                    onclick="toggleMobileMenu()"
+                    aria-label="Mở menu">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+            <!-- LOGO -->
+            <a class="logo"
+               href="@Url.Action("Index", "Home")">
+
+                MAISONÉ
+
+                <span class="logo-sub">
+                    BAGS & ACCESSORIES
+                </span>
+
+            </a>
+
+
+            <!-- RIGHT NAV -->
+            <nav class="right-nav">
+
+                <a class="header-icon"
+                   href="@Url.Action("Index", "Cart")"
+                   aria-label="Giỏ hàng">
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                    <span class="cart-number"
+                          id="cartNumber">
+                        0
+                    </span>
+
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- MOBILE MENU -->
+    <nav class="mobile-menu"
+         id="mobileMenu">
+
+        <a href="@Url.Action("Index", "Home")">
+            TRANG CHỦ
+        </a>
+
+        <a href="@Url.Action("Index", "Products")">
+            SẢN PHẨM
+        </a>
+
+        <a href="@Url.Action("Index", "Cart")">
+            GIỎ HÀNG
+        </a>
+
+    </nav>
+
+
+    <!-- MAIN -->
+    <main class="auth-page">
+
+        <section class="auth-box auth-box-redesigned register-box">
+
+            <div class="auth-form">
+
+                <span class="eyebrow">
+                    JOIN THE MAISONÉ CLUB
+                </span>
+
+
+                <h1 class="page-title">
+
+                    Tạo tài khoản<br>
+
+                    <em>
+                        của riêng bạn.
+                    </em>
+
+                </h1>
+
+
+                <p class="account-subtitle">
+                    Lưu lại thiết kế yêu thích và theo dõi đơn hàng dễ dàng hơn.
+                </p>
+
+
+                <!-- REGISTER FORM -->
+                <form id="registerForm"
+                      class="account-form">
+
+
+                    <!-- HỌ TÊN -->
+                    <div class="account-field">
+
+                        <label for="name">
+                            Họ và tên
+                        </label>
+
+                        <input class="ui-input"
+                               id="name"
+                               name="name"
+                               autocomplete="name"
+                               required
+                               placeholder="Nguyễn Minh Anh">
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+                    <div class="account-field">
+
+                        <label for="email">
+                            Email
+                        </label>
+
+                        <input class="ui-input"
+                               id="email"
+                               name="email"
+                               type="email"
+                               autocomplete="email"
+                               required
+                               placeholder="ban@email.com">
+
+                    </div>
+
+
+                    <!-- PHONE -->
+                    <div class="account-field">
+
+                        <label for="phone">
+                            Số điện thoại
+                        </label>
+
+                        <input class="ui-input"
+                               id="phone"
+                               name="phone"
+                               type="tel"
+                               autocomplete="tel"
+                               pattern="[0-9+ ]{8,18}"
+                               required
+                               placeholder="0909 123 456">
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+                    <div class="account-field">
+
+                        <label for="password">
+                            Mật khẩu
+                            <small>
+                                (ít nhất 6 ký tự)
+                            </small>
+                        </label>
+
+                        <input class="ui-input"
+                               id="password"
+                               name="password"
+                               type="password"
+                               autocomplete="new-password"
+                               minlength="6"
+                               required
+                               placeholder="Tạo mật khẩu">
+
+                    </div>
+
+
+                    <!-- SUBMIT -->
+                    <button class="ui-btn auth-submit"
+                            type="submit">
+
+                        TẠO TÀI KHOẢN
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </form>
+
+
+                <!-- LOGIN -->
+                <p class="auth-switch">
+
+                    Đã có tài khoản?
+
+                    <a class="link"
+                       href="@Url.Action("Login", "Account")">
+
+                        Đăng nhập
+
+                    </a>
+
+                </p>
+
+
+                <!-- NOTE -->
+                <p class="demo-disclaimer">
+
+                    Tài khoản đăng ký được lưu cục bộ trên trình duyệt
+                    để bạn thử luồng giao diện.
+
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- TOAST -->
+    <div id="toast"
+         class="toast"
+         role="status"
+         aria-live="polite">
+    </div>
+
+
+    <!-- MVC URL CHO REGISTER.JS -->
+    <script>
+        window.mvcHomeUrl = '@Url.Action("Index", "Home")';
+    </script>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="~/Scripts/Java/data.js"></script>
+
+    <script src="~/Scripts/Java/common.js"></script>
+
+    <script src="~/Scripts/Java/register.js"></script>
+
+</body>
+
+</html>

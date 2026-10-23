@@ -1,0 +1,478 @@
+﻿@{
+    ViewBag.Title = "Đổi trả & gửi yêu cầu · MAISONÉ";
+    ViewBag.BodyClass = "service-page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <title>Đổi trả & gửi yêu cầu · MAISONÉ</title>
+
+    <link rel="stylesheet"
+          href="~/Content/css/style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body class="service-page">
+
+    <!-- ANNOUNCEMENT -->
+    <div class="announcement">
+        MAISONÉ · CHĂM SÓC SAU MUA
+    </div>
+
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="header-inner">
+
+            <!-- LEFT NAV -->
+            <nav class="left-nav">
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Home")">
+                    TRANG CHỦ
+                </a>
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Products")">
+                    BỘ SƯU TẬP
+                </a>
+
+                <a class="nav-link"
+                   href="@Url.Action("Support", "Service")">
+                    HỖ TRỢ
+                </a>
+
+            </nav>
+
+
+            <!-- MOBILE BUTTON -->
+            <button class="mobile-button"
+                    type="button"
+                    onclick="toggleMobileMenu()"
+                    aria-label="Mở menu">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+            <!-- LOGO -->
+            <a class="logo"
+               href="@Url.Action("Index", "Home")">
+
+                MAISONÉ
+
+                <span class="logo-sub">
+                    FASHION BAGS
+                </span>
+
+            </a>
+
+
+            <!-- RIGHT NAV -->
+            <nav class="right-nav">
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Orders")">
+                    ĐƠN HÀNG
+                </a>
+
+                <a class="header-icon"
+                   href="@Url.Action("Index", "Cart")">
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                    <span class="cart-number"
+                          id="cartNumber">
+                        0
+                    </span>
+
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- MOBILE MENU -->
+    <nav class="mobile-menu"
+         id="mobileMenu"
+         aria-label="Menu mobile">
+
+        <a href="@Url.Action("Index", "Home")">
+            TRANG CHỦ
+        </a>
+
+        <a href="@Url.Action("Index", "Products")">
+            BỘ SƯU TẬP
+        </a>
+
+        <a href="@Url.Action("Index", "Orders")">
+            ĐƠN HÀNG
+        </a>
+
+        <a href="@Url.Action("Support", "Service")">
+            HỖ TRỢ
+        </a>
+
+    </nav>
+
+
+    <!-- MAIN -->
+    <main class="page-shell service-shell">
+
+
+        <!-- BREADCRUMB -->
+        <div class="service-breadcrumb">
+
+            <a href="@Url.Action("Index", "Home")">
+                Trang chủ
+            </a>
+
+            <span>/</span>
+
+            <span>
+                Đổi trả
+            </span>
+
+        </div>
+
+
+        <!-- HERO -->
+        <section class="service-hero">
+
+            <span class="eyebrow">
+                RETURNS & EXCHANGES
+            </span>
+
+            <h1 class="page-title">
+
+                Đổi trả dễ dàng,<br>
+
+                <em>
+                    được hỗ trợ tận tâm.
+                </em>
+
+            </h1>
+
+            <p>
+                Chọn đơn hàng đã nhận và gửi yêu cầu để nhân viên kiểm tra,
+                hướng dẫn các bước tiếp theo.
+            </p>
+
+        </section>
+
+
+        <!-- TWO COLUMN -->
+        <div class="service-two-column">
+
+
+            <!-- RETURN FORM -->
+            <section class="service-card">
+
+                <h2>
+                    <i class="fa-solid fa-rotate-left"></i>
+                    Gửi yêu cầu đổi trả
+                </h2>
+
+                <p class="service-help">
+                    Vui lòng gửi yêu cầu trong vòng 7 ngày kể từ khi nhận hàng.
+                    Sản phẩm cần còn nguyên tình trạng và phụ kiện đi kèm.
+                </p>
+
+
+                <form id="returnForm"
+                      class="service-form">
+
+
+                    <!-- ORDER -->
+                    <label for="returnOrder">
+                        Mã đơn đã nhận *
+                    </label>
+
+                    <select id="returnOrder"
+                            name="order"
+                            required>
+
+                        <option value="">
+                            Đơn đã giao thành công sẽ xuất hiện tại đây
+                        </option>
+
+                    </select>
+
+
+                    <!-- PRODUCT -->
+                    <label for="returnProduct">
+                        Sản phẩm cần đổi trả *
+                    </label>
+
+                    <select id="returnProduct"
+                            name="product"
+                            required
+                            disabled>
+
+                        <option value="">
+                            Chọn đơn hàng trước
+                        </option>
+
+                    </select>
+
+
+                    <!-- REASON -->
+                    <label for="returnReason">
+                        Lý do yêu cầu *
+                    </label>
+
+                    <select id="returnReason"
+                            name="reason"
+                            required>
+
+                        <option value="">
+                            Chọn lý do
+                        </option>
+
+                        <option>
+                            Sản phẩm bị lỗi / hư hỏng
+                        </option>
+
+                        <option>
+                            Nhận sai sản phẩm
+                        </option>
+
+                        <option>
+                            Muốn đổi sang sản phẩm khác
+                        </option>
+
+                        <option>
+                            Lý do khác
+                        </option>
+
+                    </select>
+
+
+                    <!-- PHONE -->
+                    <label for="returnContact">
+                        Số điện thoại liên hệ *
+                    </label>
+
+                    <input id="returnContact"
+                           name="phone"
+                           type="tel"
+                           inputmode="tel"
+                           pattern="[0-9+ ]{8,18}"
+                           required
+                           placeholder="0909 123 456">
+
+
+                    <!-- NOTE -->
+                    <label for="returnNote">
+                        Mô tả tình trạng / mong muốn *
+                    </label>
+
+                    <textarea id="returnNote"
+                              name="note"
+                              rows="3"
+                              required
+                              placeholder="Mô tả tình trạng sản phẩm hoặc phương án bạn mong muốn"></textarea>
+
+
+                    <!-- PHOTOS -->
+                    <label for="returnPhotos">
+                        Ảnh minh chứng (1–3 ảnh, tối đa 5 MB mỗi ảnh) *
+                    </label>
+
+                    <label class="service-file-picker"
+                           for="returnPhotos">
+
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                        CHỌN ẢNH MINH CHỨNG
+
+                        <input id="returnPhotos"
+                               name="photos"
+                               type="file"
+                               accept="image/jpeg,image/png,image/webp"
+                               multiple
+                               required>
+
+                    </label>
+
+
+                    <!-- FILE NAMES -->
+                    <span class="service-file-names"
+                          id="returnPhotoNames">
+                        Chưa chọn ảnh nào.
+                    </span>
+
+
+                    <!-- PHOTO PREVIEW -->
+                    <div class="warranty-photo-preview"
+                         id="returnPhotoPreview"
+                         aria-live="polite">
+                    </div>
+
+
+                    <small class="service-file-note">
+                        Vui lòng chụp rõ sản phẩm và vị trí cần đổi trả
+                        để nhân viên xác nhận.
+                    </small>
+
+
+                    <!-- SUBMIT -->
+                    <button class="ui-btn"
+                            type="submit">
+
+                        GỬI YÊU CẦU ĐỔI TRẢ →
+
+                    </button>
+
+                </form>
+
+            </section>
+
+
+            <!-- PROCESS -->
+            <aside class="service-card service-steps">
+
+                <h2>
+                    Quy trình xử lý
+                </h2>
+
+
+                <ol class="service-steps-list">
+
+                    <li>
+                        <strong>
+                            01 · Gửi yêu cầu
+                        </strong>
+
+                        <span>
+                            Điền lý do và ảnh minh chứng.
+                        </span>
+                    </li>
+
+
+                    <li>
+                        <strong>
+                            02 · Chờ xác nhận
+                        </strong>
+
+                        <span>
+                            Nhân viên kiểm tra điều kiện đổi trả.
+                        </span>
+                    </li>
+
+
+                    <li>
+                        <strong>
+                            03 · Nhận hàng hoàn
+                        </strong>
+
+                        <span>
+                            Đơn vị vận chuyển đến lấy sau khi được duyệt.
+                        </span>
+                    </li>
+
+
+                    <li>
+                        <strong>
+                            04 · Xử lý đổi / hoàn
+                        </strong>
+
+                        <span>
+                            Theo dõi trạng thái tới khi hoàn tất.
+                        </span>
+                    </li>
+
+                </ol>
+
+
+                <a class="text-link"
+                   href="@Url.Action("Index", "Orders")">
+
+                    XEM LỊCH SỬ ĐƠN HÀNG
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+            </aside>
+
+        </div>
+
+
+        <!-- REQUEST LIST -->
+        <section class="service-card service-request-list">
+
+            <h2>
+                Yêu cầu đã gửi trên thiết bị này
+            </h2>
+
+            <div id="returnRequests"></div>
+
+        </section>
+
+
+        <!-- FOOTER ACTIONS -->
+        <div class="service-footer-actions">
+
+            <a class="ui-btn"
+               href="@Url.Action("Index", "Products")">
+
+                TIẾP TỤC MUA SẮM
+
+            </a>
+
+
+            <a class="ui-btn light"
+               href="@Url.Action("Support", "Service")">
+
+                NHẮN TIN HỖ TRỢ
+
+            </a>
+
+        </div>
+
+
+        <!-- DEMO NOTE -->
+        <p class="demo-disclaimer">
+
+            Đây là luồng giao diện demo: yêu cầu được lưu trong trình duyệt hiện tại,
+            chưa gửi đến hệ thống xử lý đơn hàng.
+
+        </p>
+
+    </main>
+
+
+    <!-- TOAST -->
+    <div id="toast"
+         class="toast"
+         role="status"
+         aria-live="polite">
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="~/Scripts/Java/data.js"></script>
+
+    <script src="~/Scripts/Java/common.js"></script>
+
+    <script src="~/Scripts/Java/service.js"></script>
+
+</body>
+
+</html>

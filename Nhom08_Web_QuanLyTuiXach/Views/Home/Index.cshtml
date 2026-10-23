@@ -1,0 +1,720 @@
+﻿@{
+    ViewBag.Title = "MAISONÉ — Túi xách cho câu chuyện của bạn";
+    ViewBag.BodyClass = "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- ANNOUNCEMENT -->
+<div class="announcement">
+    MAISONÉ · MIỄN PHÍ VẬN CHUYỂN CHO ĐƠN TỪ 999.000Đ
+</div>
+
+
+<!-- HEADER -->
+<header class="header storefront-header">
+
+    <div class="header-inner">
+
+        <!-- LEFT NAV -->
+        <nav class="left-nav"
+             aria-label="Điều hướng chính">
+
+            <a class="nav-link"
+               href="@Url.Action("Index", "Home")">
+                TRANG CHỦ
+            </a>
+
+            <a class="nav-link"
+               href="@Url.Action("Index", "Products")">
+                BỘ SƯU TẬP
+            </a>
+
+            <a class="nav-link"
+               href="#seasonCollections">
+                THEO MÙA
+            </a>
+
+            <a class="nav-link"
+               href="@Url.Action("Shipping", "Service")">
+                VẬN CHUYỂN
+            </a>
+
+            <a class="nav-link"
+               href="@Url.Action("Support", "Service")">
+                HỖ TRỢ
+            </a>
+
+        </nav>
+
+
+        <!-- MOBILE BUTTON -->
+        <button class="mobile-button"
+                type="button"
+                onclick="toggleMobileMenu()"
+                aria-label="Mở menu">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+
+        <!-- LOGO -->
+        <a class="logo"
+           href="@Url.Action("Index", "Home")">
+
+            MAISONÉ
+
+            <span class="logo-sub">
+                BAGS & ACCESSORIES
+            </span>
+
+        </a>
+
+
+        <!-- RIGHT NAV -->
+        <nav class="right-nav"
+             aria-label="Tài khoản và mua sắm">
+
+            <!-- WISHLIST -->
+            <a class="header-icon"
+               href="@Url.Action("Index", "Wishlist")"
+               aria-label="Sản phẩm yêu thích">
+
+                <i class="fa-regular fa-heart"></i>
+
+            </a>
+
+
+            <!-- ACCOUNT -->
+            <a class="account-button"
+               href="@Url.Action("Login", "Account")">
+
+                <i class="fa-regular fa-user"></i>
+
+                <span>
+                    TÀI KHOẢN
+                </span>
+
+            </a>
+
+
+            <!-- CART -->
+            <a class="header-icon"
+               href="@Url.Action("Index", "Cart")"
+               aria-label="Giỏ hàng">
+
+                <i class="fa-solid fa-bag-shopping"></i>
+
+                <span class="cart-number"
+                      id="cartNumber">
+                    0
+                </span>
+
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- MOBILE MENU -->
+<nav class="mobile-menu"
+     id="mobileMenu"
+     aria-label="Menu mobile">
+
+    <a href="@Url.Action("Index", "Home")">
+        <i class="fa-solid fa-house"></i>
+        TRANG CHỦ
+    </a>
+
+    <a href="@Url.Action("Index", "Products")">
+        <i class="fa-solid fa-bag-shopping"></i>
+        BỘ SƯU TẬP
+    </a>
+
+    <a href="#seasonCollections">
+        <i class="fa-solid fa-layer-group"></i>
+        THEO MÙA
+    </a>
+
+    <a href="@Url.Action("Shipping", "Service")">
+        <i class="fa-solid fa-truck-fast"></i>
+        VẬN CHUYỂN
+    </a>
+
+    <a href="@Url.Action("Support", "Service")">
+        <i class="fa-solid fa-headset"></i>
+        HỖ TRỢ
+    </a>
+
+</nav>
+
+
+<!-- MAIN -->
+<main>
+
+    <!-- HERO -->
+    <section class="hero storefront-hero">
+
+        <div class="hero-grid">
+
+            <!-- HERO TEXT -->
+            <div class="hero-text">
+
+                <div class="hero-label">
+                    MAISONÉ · AUTUMN / WINTER 2026
+                </div>
+
+
+                <h1 class="hero-title">
+
+                    A bag
+                    <br>
+                    <em>for every</em>
+                    <br>
+                    story.
+
+                </h1>
+
+
+                <p class="hero-description">
+
+                    Khám phá những thiết kế túi xách tinh tế,
+                    đồng hành cùng bạn từ ngày thường đến
+                    những dịp thật đặc biệt.
+
+                </p>
+
+
+                <div class="hero-buttons">
+
+                    <a class="btn-dark"
+                       href="@Url.Action("Index", "Products")">
+
+                        KHÁM PHÁ BỘ SƯU TẬP
+
+                    </a>
+
+
+                    <a class="btn-outline"
+                       href="@Url.Action("Index", "Products")">
+
+                        MUA SẮM NGAY
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- HERO IMAGE -->
+            <div class="hero-image"
+                 role="img"
+                 aria-label="Túi xách trong bộ sưu tập Maisoné">
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BENEFITS -->
+    <section class="benefits-bar"
+             aria-label="Dịch vụ và quyền lợi">
+
+        <div class="benefits-grid">
+
+            <!-- SHIPPING -->
+            <a class="benefit-item"
+               href="@Url.Action("Shipping", "Service")">
+
+                <span class="benefit-icon">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </span>
+
+                <span class="benefit-copy">
+
+                    <strong>
+                        MIỄN PHÍ VẬN CHUYỂN
+                    </strong>
+
+                    <span>
+                        Đơn từ 999.000đ · Mã FREESHIP
+                    </span>
+
+                </span>
+
+            </a>
+
+
+            <!-- RETURNS -->
+            <a class="benefit-item"
+               href="@Url.Action("Returns", "Service")">
+
+                <span class="benefit-icon">
+                    <i class="fa-solid fa-rotate-left"></i>
+                </span>
+
+                <span class="benefit-copy">
+
+                    <strong>
+                        ĐỔI TRẢ MINH BẠCH
+                    </strong>
+
+                    <span>
+                        Gửi yêu cầu trực tuyến trong 7 ngày
+                    </span>
+
+                </span>
+
+            </a>
+
+
+            <!-- WARRANTY -->
+            <a class="benefit-item"
+               href="@Url.Action("Warranty", "Service")">
+
+                <span class="benefit-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </span>
+
+                <span class="benefit-copy">
+
+                    <strong>
+                        BẢO HÀNH 1 NĂM
+                    </strong>
+
+                    <span>
+                        Tra cứu và gửi yêu cầu bảo hành
+                    </span>
+
+                </span>
+
+            </a>
+
+
+            <!-- SUPPORT -->
+            <a class="benefit-item"
+               href="@Url.Action("Support", "Service")">
+
+                <span class="benefit-icon">
+                    <i class="fa-solid fa-headset"></i>
+                </span>
+
+                <span class="benefit-copy">
+
+                    <strong>
+                        NHẮN TIN HỖ TRỢ
+                    </strong>
+
+                    <span>
+                        Trao đổi với bộ phận tư vấn
+                    </span>
+
+                </span>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- FEATURED PRODUCTS -->
+    <section class="home-featured page-shell"
+             id="featuredProducts">
+
+        <div class="home-collections-heading">
+
+            <div>
+
+                <span class="eyebrow">
+                    MAISONÉ SELECTION
+                </span>
+
+                <h2>
+                    Thiết kế nổi bật
+                </h2>
+
+                <p>
+                    Những chiếc túi được yêu thích,
+                    sẵn sàng đồng hành cùng bạn.
+                </p>
+
+            </div>
+
+
+            <a class="text-link"
+               href="@Url.Action("Index", "Products")">
+
+                XEM TẤT CẢ SẢN PHẨM
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+
+        <div class="product-grid home-product-grid"
+             id="homeFeaturedProducts"
+             aria-live="polite">
+        </div>
+
+    </section>
+
+
+    <!-- COLLECTIONS -->
+    <section class="home-collections"
+             id="seasonCollections">
+
+        <div class="home-collections-heading">
+
+            <div>
+
+                <span class="eyebrow">
+                    CURATED FOR YOUR DAYS
+                </span>
+
+                <h2>
+                    Chọn bộ sưu tập
+                </h2>
+
+            </div>
+
+
+            <a class="text-link"
+               href="@Url.Action("Index", "Products")">
+
+                XEM TẤT CẢ TÚI
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+
+        <div class="home-collection-grid">
+
+            <!-- AUTUMN -->
+            <a class="home-collection-card collection-autumn"
+               href="@Url.Action("Autumn", "Collection")">
+
+                <span>
+                    01 / AUTUMN & WINTER
+                </span>
+
+                <div>
+
+                    <h3>
+                        Thu Đông
+                    </h3>
+
+                    <p>
+                        Gam màu trầm ấm,
+                        phom dáng vượt thời gian.
+                    </p>
+
+                    <strong>
+
+                        KHÁM PHÁ BỘ SƯU TẬP
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </strong>
+
+                </div>
+
+            </a>
+
+
+            <!-- SUMMER -->
+            <a class="home-collection-card collection-summer"
+               href="@Url.Action("Summer", "Collection")">
+
+                <span>
+                    02 / SUMMER ESCAPE
+                </span>
+
+                <div>
+
+                    <h3>
+                        Mùa Hè
+                    </h3>
+
+                    <p>
+                        Nhẹ nhàng, rộng rãi
+                        cho những chuyến đi.
+                    </p>
+
+                    <strong>
+
+                        KHÁM PHÁ BỘ SƯU TẬP
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </strong>
+
+                </div>
+
+            </a>
+
+
+            <!-- WORK -->
+            <a class="home-collection-card collection-work"
+               href="@Url.Action("Work", "Collection")">
+
+                <span>
+                    03 / WORK EDIT
+                </span>
+
+                <div>
+
+                    <h3>
+                        Công Sở
+                    </h3>
+
+                    <p>
+                        Chỉn chu và tiện dụng
+                        cho ngày bận rộn.
+                    </p>
+
+                    <strong>
+
+                        KHÁM PHÁ BỘ SƯU TẬP
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </strong>
+
+                </div>
+
+            </a>
+
+
+            <!-- WEEKEND -->
+            <a class="home-collection-card collection-weekend"
+               href="@Url.Action("Weekend", "Collection")">
+
+                <span>
+                    04 / WEEKEND MINI
+                </span>
+
+                <div>
+
+                    <h3>
+                        Dạo Phố
+                    </h3>
+
+                    <p>
+                        Những chiếc túi mini
+                        cho ngày tự do.
+                    </p>
+
+                    <strong>
+
+                        KHÁM PHÁ BỘ SƯU TẬP
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </strong>
+
+                </div>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- STORY -->
+    <section class="storefront-story"
+             id="story">
+
+        <div class="storefront-story-image"
+             role="img"
+             aria-label="Túi xách Maisoné với thiết kế vượt thời gian">
+        </div>
+
+
+        <div class="storefront-story-copy">
+
+            <span class="eyebrow">
+                THE MAISONÉ STORY
+            </span>
+
+
+            <h2>
+
+                Thiết kế tinh tế,
+                <br>
+                <em>đồng hành dài lâu.</em>
+
+            </h2>
+
+
+            <p>
+
+                Mỗi chiếc túi Maisoné được chọn lựa
+                để cân bằng giữa thẩm mỹ và tính ứng dụng.
+                Tìm kiểu dáng phù hợp với nhịp sống của bạn
+                trong bộ sưu tập trực tuyến.
+
+            </p>
+
+
+            <a class="ui-btn"
+               href="@Url.Action("Index", "Products")">
+
+                XEM TẤT CẢ SẢN PHẨM
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer class="storefront-footer">
+
+    <div class="footer-grid">
+
+        <!-- BRAND -->
+        <div>
+
+            <div class="footer-brand">
+                MAISONÉ
+            </div>
+
+            <p class="footer-description">
+                Những thiết kế túi xách thanh lịch
+                cho nhịp sống hiện đại.
+            </p>
+
+        </div>
+
+
+        <!-- SHOPPING -->
+        <div class="footer-column">
+
+            <h4>
+                MUA SẮM
+            </h4>
+
+            <a href="@Url.Action("Index", "Products")">
+                Tất cả sản phẩm
+            </a>
+
+            <a href="@Url.Action("Index", "Cart")">
+                Giỏ hàng
+            </a>
+
+            <a href="@Url.Action("Index", "Wishlist")">
+                Yêu thích
+            </a>
+
+            <a href="@Url.Action("Vouchers", "Service")">
+                Voucher & tích điểm
+            </a>
+
+        </div>
+
+
+        <!-- POLICY -->
+        <div class="footer-column">
+
+            <h4>
+                CHÍNH SÁCH
+            </h4>
+
+            <a href="@Url.Action("Shipping", "Service")">
+                Giao hàng & vận chuyển
+            </a>
+
+            <a href="@Url.Action("Returns", "Service")">
+                Đổi trả
+            </a>
+
+            <a href="@Url.Action("Warranty", "Service")">
+                Bảo hành
+            </a>
+
+        </div>
+
+
+        <!-- CONTACT -->
+        <div class="footer-column">
+
+            <h4>
+                LIÊN HỆ
+            </h4>
+
+            <a href="@Url.Action("Support", "Service")">
+                Trung tâm hỗ trợ
+            </a>
+
+            <a href="tel:0909123456">
+                0909 123 456
+            </a>
+
+            <a href="mailto:hello@maisone.vn">
+                hello@maisone.vn
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER BOTTOM -->
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 MAISONÉ. ALL RIGHTS RESERVED.
+        </span>
+
+        <span>
+            MADE WITH LOVE ♡
+        </span>
+
+    </div>
+
+</footer>
+
+
+<!-- TOAST -->
+<div id="toast"
+     class="toast"
+     role="status"
+     aria-live="polite">
+</div>
+
+
+
+@section Scripts {
+    <script>
+        window.productDetailUrl =
+            '@Url.Action("Detail", "Products")';
+
+        window.mvcImageRoot =
+            '@Url.Content("~/Content/")';
+
+        window.mvcRoot =
+            '@Url.Content("~/Content/")';
+    </script>
+
+    <script src="@Url.Content("~/Scripts/Java/wishlist.js")"></script>
+    <script src="@Url.Content("~/Scripts/Java/cart.js")"></script>
+    <script src="@Url.Content("~/Scripts/Java/home.js")"></script>
+    <script src="@Url.Content("~/Scripts/Java/storefront.js")"></script>
+}

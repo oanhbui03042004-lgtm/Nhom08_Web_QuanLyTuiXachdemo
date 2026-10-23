@@ -1,0 +1,964 @@
+﻿@{
+    ViewBag.Title = "Bảng điều hành quản lý · MAISONÉ";
+}
+
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet"
+          href="~/Content/css/style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <title>Bảng điều hành quản lý · MAISONÉ</title>
+</head>
+
+
+<body class="admin-body manager-console">
+
+    <div class="admin-app">
+
+
+        <!-- SIDEBAR -->
+        <aside class="admin-sidebar">
+
+
+            <!-- BRAND -->
+            <div class="admin-brand">
+
+                MAISONÉ
+
+                <small>
+                    OPERATIONS DESK
+                </small>
+
+            </div>
+
+
+            <!-- USER -->
+            <div class="admin-user">
+
+                <i class="fa-solid fa-user-tie"></i>
+
+                <div>
+
+                    <b data-admin-name>
+                        Quản lý Maisoné
+                    </b>
+
+                    <span data-admin-role>
+                        Quản lý vận hành
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- MENU -->
+            <nav>
+
+
+                <!-- VẬN HÀNH -->
+                <a class="active"
+                   href="@Url.Action("Index", "Manager")">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    Vận hành cửa hàng
+
+                </a>
+
+
+                <!-- SẢN PHẨM -->
+                <a href="@Url.Action("Products", "Admin")"
+                   data-permission="products">
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                    Sản phẩm
+
+                </a>
+
+
+                <!-- ĐƠN HÀNG -->
+                <a href="@Url.Action("Orders", "Admin")"
+                   data-permission="orders">
+
+                    <i class="fa-solid fa-receipt"></i>
+
+                    Đơn hàng & tài chính
+
+                </a>
+
+
+                <!-- KHO -->
+                <a href="@Url.Action("Inventory", "Admin")"
+                   data-permission="inventory">
+
+                    <i class="fa-solid fa-boxes-stacked"></i>
+
+                    Kho & nhập hàng
+
+                </a>
+
+
+                <!-- VOUCHER -->
+                <a href="@Url.Action("Marketing", "Admin")"
+                   data-permission="vouchers">
+
+                    <i class="fa-solid fa-ticket"></i>
+
+                    Voucher
+
+                </a>
+
+
+                <!-- NHÂN SỰ -->
+                <a href="@Url.Action("Staff", "Admin")#personnel"
+                   data-permission="staff">
+
+                    <i class="fa-solid fa-users-gear"></i>
+
+                    Nhân sự
+
+                </a>
+
+
+                <!-- LỊCH LÀM -->
+                <a href="@Url.Action("Staff", "Admin")#schedule"
+                   data-permission="staff">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    Lịch làm
+
+                </a>
+
+
+                <!-- KHÁCH HÀNG -->
+                <a href="@Url.Action("Customers", "Admin")"
+                   data-permission="customers">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    Hồ sơ khách hàng
+
+                </a>
+
+            </nav>
+
+
+            <!-- SIDEBAR BOTTOM -->
+            <div class="admin-sidebar-bottom">
+
+
+                <!-- XEM CỬA HÀNG -->
+                <a href="@Url.Action("Index", "Home")">
+
+                    <i class="fa-solid fa-store"></i>
+
+                    Xem cửa hàng
+
+                </a>
+
+
+                <!-- ĐĂNG XUẤT -->
+                <a href="@Url.Action("Index", "Home")"
+                   data-logout>
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    Đăng xuất
+
+                </a>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- MAIN -->
+        <main class="admin-main">
+
+
+            <!-- TOP BAR -->
+            <header class="admin-topbar manager-topbar">
+
+                <div>
+
+                    <span class="admin-breadcrumb">
+                        MAISONÉ / OPERATIONS
+                    </span>
+
+                    <h1>
+                        Trung tâm vận hành
+                    </h1>
+
+                </div>
+
+
+                <div class="admin-top-actions">
+
+                    <span class="manager-topbar-label">
+                        KHÔNG GIAN QUẢN LÝ
+                    </span>
+
+                    <span class="admin-avatar">
+
+                        <i class="fa-solid fa-user-tie"></i>
+
+                    </span>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- CONTENT -->
+            <section class="admin-content manager-content">
+
+
+                <!-- MANAGER HERO -->
+                <section class="manager-hero">
+
+
+                    <div class="manager-hero-copy">
+
+                        <span class="manager-hero-kicker">
+
+                            <i class="fa-solid fa-sparkles"></i>
+
+                            BẢNG ĐIỀU HÀNH / QUẢN LÝ
+
+                        </span>
+
+
+                        <h1>
+                            Vận hành cửa hàng
+                        </h1>
+
+
+                        <p>
+                            Theo dõi hoạt động, doanh thu
+                            và những việc cần ưu tiên trong một nơi.
+                        </p>
+
+                    </div>
+
+
+                    <!-- STAFF SCHEDULE -->
+                    <a class="manager-hero-action"
+                       href="@Url.Action("Staff", "Admin")"
+                       data-permission="staff">
+
+                        <span class="manager-action-icon">
+
+                            <i class="fa-solid fa-calendar-days"></i>
+
+                        </span>
+
+
+                        <span>
+
+                            <b>
+                                Lịch nhân sự
+                            </b>
+
+                            <small>
+                                Xem ca làm & nghỉ phép
+                            </small>
+
+                        </span>
+
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                    </a>
+
+
+                    <span class="manager-hero-watermark">
+
+                        <i class="fa-solid fa-bag-shopping"></i>
+
+                    </span>
+
+                </section>
+
+
+
+                <!-- STATS -->
+                <div class="stats">
+
+
+                    <!-- PENDING -->
+                    <div class="stat">
+
+                        <small>
+                            ĐƠN CHỜ XỬ LÝ
+                        </small>
+
+                        <b id="managerPending">
+                            0
+                        </b>
+
+                        <span>
+                            Đơn khách vừa đặt
+                        </span>
+
+                    </div>
+
+
+                    <!-- SHIPPING -->
+                    <div class="stat">
+
+                        <small>
+                            ĐANG GIAO
+                        </small>
+
+                        <b id="managerShipping">
+                            0
+                        </b>
+
+                        <span>
+                            Đơn đang vận chuyển
+                        </span>
+
+                    </div>
+
+
+                    <!-- LEAVE -->
+                    <a class="stat manager-leave-stat"
+                       href="#managerLeaveRequests">
+
+                        <small>
+                            YÊU CẦU NGHỈ CHỜ DUYỆT
+                        </small>
+
+                        <b id="managerLeave">
+                            0
+                        </b>
+
+                        <span>
+                            Xem và xử lý đơn xin nghỉ
+                        </span>
+
+                    </a>
+
+
+                    <!-- LOW STOCK -->
+                    <div class="stat">
+
+                        <small>
+                            HÀNG SẮP HẾT
+                        </small>
+
+                        <b id="managerLowStock">
+                            0
+                        </b>
+
+                        <span>
+                            Tồn kho ≤ 5
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- LEAVE REQUESTS -->
+                <section class="ui-card manager-leave-requests"
+                         id="managerLeaveRequests">
+
+
+                    <div class="admin-section-heading">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                TEAM / LEAVE REQUESTS
+                            </span>
+
+                            <h2>
+                                Đơn xin nghỉ cần xử lý
+                            </h2>
+
+                            <p>
+                                Xem lý do, thời gian nghỉ và chọn duyệt
+                                có lương, không lương hoặc từ chối.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="manager-leave-list"
+                         id="managerLeaveRows"
+                         aria-live="polite">
+                    </div>
+
+
+                    <p class="admin-empty-state"
+                       id="managerLeaveEmpty"
+                       hidden>
+
+                        Hiện chưa có đơn nghỉ đang chờ duyệt.
+
+                    </p>
+
+                </section>
+
+
+
+                <!-- REVENUE -->
+                <section class="ui-card dashboard-chart-card manager-revenue-card"
+                         data-permission="orders">
+
+
+                    <div class="admin-section-heading manager-revenue-heading">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                SALES PERFORMANCE
+                            </span>
+
+                            <h2 id="dashboardChartTitle">
+                                Lịch sử doanh thu
+                            </h2>
+
+                            <p id="dashboardChartDescription">
+                                Trục dọc là doanh thu;
+                                mỗi cột là một khoảng thời gian.
+                            </p>
+
+                        </div>
+
+
+                        <span class="manager-revenue-mark">
+
+                            <i class="fa-solid fa-chart-column"></i>
+
+                            BÁO CÁO DOANH THU
+
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- DASHBOARD FILTERS -->
+                    <div class="dashboard-filters manager-dashboard-filters">
+
+
+                        <!-- PERIOD -->
+                        <div class="dashboard-mode-field">
+
+                            <span class="dashboard-field-label">
+                                Thống kê theo
+                            </span>
+
+
+                            <span class="dashboard-control dashboard-mode-control">
+
+                                <i class="fa-solid fa-chart-column"></i>
+
+
+                                <button class="dashboard-period-trigger"
+                                        id="dashboardPeriodTrigger"
+                                        type="button"
+                                        aria-haspopup="menu"
+                                        aria-expanded="false">
+
+                                    Tháng
+
+                                    <i class="fa-solid fa-chevron-down dashboard-select-chevron"></i>
+
+                                </button>
+
+
+                                <select id="dashboardPeriod"
+                                        class="dashboard-period-native"
+                                        aria-hidden="true"
+                                        tabindex="-1">
+
+                                    <option value="day">
+                                        Ngày
+                                    </option>
+
+                                    <option value="month"
+                                            selected>
+                                        Tháng
+                                    </option>
+
+                                    <option value="year">
+                                        Năm
+                                    </option>
+
+                                </select>
+
+
+                                <div class="dashboard-period-menu"
+                                     id="dashboardPeriodMenu"
+                                     role="menu"
+                                     aria-label="Chọn kỳ thống kê"
+                                     hidden>
+
+
+                                    <!-- DAY -->
+                                    <button type="button"
+                                            role="menuitemradio"
+                                            aria-checked="false"
+                                            data-period="day">
+
+                                        <i class="fa-regular fa-calendar"></i>
+
+                                        <span>
+                                            Ngày
+                                        </span>
+
+                                        <small>
+                                            Xem theo từng khung giờ
+                                        </small>
+
+                                    </button>
+
+
+                                    <!-- MONTH -->
+                                    <button type="button"
+                                            role="menuitemradio"
+                                            aria-checked="true"
+                                            data-period="month">
+
+                                        <i class="fa-regular fa-calendar-days"></i>
+
+                                        <span>
+                                            Tháng
+                                        </span>
+
+                                        <small>
+                                            So sánh doanh thu từng ngày
+                                        </small>
+
+                                    </button>
+
+
+                                    <!-- YEAR -->
+                                    <button type="button"
+                                            role="menuitemradio"
+                                            aria-checked="false"
+                                            data-period="year">
+
+                                        <i class="fa-regular fa-calendar-check"></i>
+
+                                        <span>
+                                            Năm
+                                        </span>
+
+                                        <small>
+                                            Tổng hợp theo từng tháng
+                                        </small>
+
+                                    </button>
+
+                                </div>
+
+                            </span>
+
+                        </div>
+
+
+
+                        <!-- DAY -->
+                        <div id="dashboardDayField"
+                             class="dashboard-date-field">
+
+                            <span class="dashboard-field-label">
+                                Chọn ngày
+                            </span>
+
+
+                            <span class="dashboard-control dashboard-date-control">
+
+                                <i class="fa-regular fa-calendar"></i>
+
+                                <button class="dashboard-picker-trigger"
+                                        id="dashboardDayTrigger"
+                                        type="button"
+                                        aria-haspopup="dialog"
+                                        aria-expanded="false">
+                                </button>
+
+                            </span>
+
+
+                            <input id="dashboardDay"
+                                   type="hidden">
+
+
+                            <div class="dashboard-calendar-popover"
+                                 id="dashboardDayPicker"
+                                 role="dialog"
+                                 aria-label="Chọn ngày thống kê"
+                                 hidden>
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- MONTH -->
+                        <div id="dashboardMonthField"
+                             class="dashboard-date-field"
+                             hidden>
+
+                            <span class="dashboard-field-label">
+                                Chọn tháng
+                            </span>
+
+
+                            <span class="dashboard-control dashboard-date-control">
+
+                                <i class="fa-regular fa-calendar"></i>
+
+                                <button class="dashboard-picker-trigger"
+                                        id="dashboardMonthTrigger"
+                                        type="button"
+                                        aria-haspopup="dialog"
+                                        aria-expanded="false">
+                                </button>
+
+                            </span>
+
+
+                            <input id="dashboardMonth"
+                                   type="hidden">
+
+
+                            <div class="dashboard-calendar-popover month-picker-popover"
+                                 id="dashboardMonthPicker"
+                                 role="dialog"
+                                 aria-label="Chọn tháng thống kê"
+                                 hidden>
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- YEAR -->
+                        <label id="dashboardYearField"
+                               class="dashboard-date-field"
+                               hidden>
+
+                            <span class="dashboard-field-label">
+                                Chọn năm
+                            </span>
+
+
+                            <span class="dashboard-control">
+
+                                <i class="fa-regular fa-calendar"></i>
+
+                                <select id="dashboardYear"
+                                        aria-label="Chọn năm thống kê"
+                                        required>
+                                </select>
+
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+
+                    <!-- NOTE -->
+                    <p class="admin-report-note">
+
+                        Doanh thu lấy từ đơn đã giao thành công;
+                        chọn ngày/tháng/năm để tra cứu dữ liệu lịch sử.
+
+                    </p>
+
+
+
+                    <!-- REVENUE STATS -->
+                    <div class="stats">
+
+
+                        <div class="stat">
+
+                            <small>
+                                DOANH THU ĐÃ HOÀN TẤT
+                            </small>
+
+                            <b id="dashboardRevenue">
+                                0đ
+                            </b>
+
+                            <span id="dashboardRevenuePeriod">
+                                Trong kỳ đã chọn
+                            </span>
+
+                        </div>
+
+
+                        <div class="stat">
+
+                            <small>
+                                ĐƠN ĐÃ ĐẶT
+                            </small>
+
+                            <b id="dashboardOrders">
+                                0
+                            </b>
+
+                            <span>
+                                Trong kỳ đã chọn
+                            </span>
+
+                        </div>
+
+
+                        <div class="stat">
+
+                            <small>
+                                GIÁ TRỊ ĐƠN TRUNG BÌNH
+                            </small>
+
+                            <b id="dashboardAverage">
+                                0đ
+                            </b>
+
+                            <span>
+                                Chỉ tính đơn đã giao thành công
+                            </span>
+
+                        </div>
+
+
+                        <div class="stat">
+
+                            <small>
+                                ĐANG CHỜ XỬ LÝ
+                            </small>
+
+                            <b id="dashboardPending">
+                                0
+                            </b>
+
+                            <span>
+                                Trên toàn bộ đơn hàng
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- CHART -->
+                    <div class="dashboard-chart-scroll">
+
+                        <svg class="dashboard-chart"
+                             id="dashboardChart"
+                             role="img"
+                             aria-label="Biểu đồ cột doanh thu">
+                        </svg>
+
+                    </div>
+
+
+                    <!-- AXIS -->
+                    <div class="dashboard-axis-caption">
+
+                        <span id="dashboardAxisLabel">
+                            Doanh thu (VNĐ)
+                        </span>
+
+                        <span>
+                            Thời gian trong kỳ đã chọn
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- HISTORY TABLE -->
+                    <div class="admin-table-scroll">
+
+                        <table class="data-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Kỳ
+                                    </th>
+
+                                    <th>
+                                        Đơn đã đặt
+                                    </th>
+
+                                    <th>
+                                        Đơn hoàn tất
+                                    </th>
+
+                                    <th>
+                                        Doanh thu
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="dashboardHistory">
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+                    <p id="dashboardHistoryEmpty"
+                       class="admin-empty-state"
+                       hidden>
+
+                        Chưa có đơn hàng trong kỳ đã chọn.
+
+                    </p>
+
+                </section>
+
+
+
+                <!-- QUICK LINKS -->
+                <div class="dashboard-quick-links">
+
+
+                    <!-- PRODUCTS -->
+                    <a class="ui-card"
+                       href="@Url.Action("Products", "Admin")"
+                       data-permission="products">
+
+                        <b>
+                            Quản lý sản phẩm
+                        </b>
+
+                        <span>
+                            Cập nhật thông tin và tồn kho sản phẩm.
+                        </span>
+
+                    </a>
+
+
+                    <!-- ORDERS -->
+                    <a class="ui-card"
+                       href="@Url.Action("Orders", "Admin")"
+                       data-permission="orders">
+
+                        <b>
+                            Điều phối đơn hàng
+                        </b>
+
+                        <span>
+                            Theo dõi trạng thái và tải báo cáo CSV.
+                        </span>
+
+                    </a>
+
+
+                    <!-- INVENTORY -->
+                    <a class="ui-card"
+                       href="@Url.Action("Inventory", "Admin")"
+                       data-permission="inventory">
+
+                        <b>
+                            Nhập hàng
+                        </b>
+
+                        <span>
+                            Lập phiếu nhận hàng và ghi chi phí.
+                        </span>
+
+                    </a>
+
+
+                    <!-- STAFF -->
+                    <a class="ui-card"
+                       href="@Url.Action("Staff", "Admin")"
+                       data-permission="staff">
+
+                        <b>
+                            Nhân sự & chấm công
+                        </b>
+
+                        <span>
+                            Duyệt nghỉ, xếp lịch và ước tính lương.
+                        </span>
+
+                    </a>
+
+
+                    <!-- VOUCHER -->
+                    <a class="ui-card"
+                       href="@Url.Action("Marketing", "Admin")"
+                       data-permission="vouchers">
+
+                        <b>
+                            Quản lý voucher
+                        </b>
+
+                        <span>
+                            Tạo và quản lý mã giảm giá cho cửa hàng.
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+
+    <!-- TOAST -->
+    <div id="toast"
+         class="toast"
+         role="status"
+         aria-live="polite">
+    </div>
+
+
+
+    <!-- JAVASCRIPT -->
+    <script src="~/Scripts/Java/data.js"></script>
+
+    <script src="~/Scripts/Java/common.js"></script>
+
+    <script src="~/Scripts/Java/form-select.js"></script>
+
+    <script src="~/Scripts/Java/manager.js"></script>
+
+    <script src="~/Scripts/Java/admin-dashboard.js"></script>
+
+</body>
+
+</html>

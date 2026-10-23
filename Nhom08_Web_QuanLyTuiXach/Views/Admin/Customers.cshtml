@@ -1,0 +1,393 @@
+﻿@{
+    ViewBag.Title = "Khách hàng · MAISONÉ Admin";
+}
+
+<!doctype html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet"
+          href="~/Content/css/style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <title>Khách hàng · MAISONÉ Admin</title>
+
+</head>
+
+
+<body class="admin-body">
+
+    <div class="admin-app">
+
+
+        <!-- SIDEBAR -->
+        <aside class="admin-sidebar">
+
+
+            <!-- BRAND -->
+            <div class="admin-brand">
+
+                MAISONÉ
+
+                <small>
+                    ADMIN CONSOLE
+                </small>
+
+            </div>
+
+
+            <!-- ADMIN USER -->
+            <div class="admin-user">
+
+                <i class="fa-solid fa-circle-user"></i>
+
+                <div>
+
+                    <b data-admin-name>
+                        System Admin
+                    </b>
+
+                    <span data-admin-role>
+                        Quản trị hệ thống
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- MENU -->
+            <nav>
+
+
+                <!-- TỔNG QUAN -->
+                <a href="@Url.Action("Index", "Admin")"
+                   data-permission="dashboard">
+
+                    <i class="fa-solid fa-gauge-high"></i>
+
+                    Tổng quan
+
+                </a>
+
+
+                <!-- SẢN PHẨM -->
+                <a href="@Url.Action("Products", "Admin")"
+                   data-permission="products">
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                    Sản phẩm
+
+                </a>
+
+
+                <!-- ĐƠN HÀNG -->
+                <a href="@Url.Action("Orders", "Admin")"
+                   data-permission="orders">
+
+                    <i class="fa-solid fa-receipt"></i>
+
+                    Đơn hàng & tài chính
+
+                </a>
+
+
+                <!-- KHO -->
+                <a href="@Url.Action("Inventory", "Admin")"
+                   data-permission="inventory">
+
+                    <i class="fa-solid fa-boxes-stacked"></i>
+
+                    Kho hàng
+
+                </a>
+
+
+                <!-- KHÁCH HÀNG -->
+                <a class="active"
+                   href="@Url.Action("Customers", "Admin")"
+                   data-permission="customers">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    Khách hàng
+
+                </a>
+
+
+                <!-- VOUCHER -->
+                <a href="@Url.Action("Marketing", "Admin")"
+                   data-permission="vouchers">
+
+                    <i class="fa-solid fa-ticket"></i>
+
+                    Voucher
+
+                </a>
+
+
+                <!-- NHÂN SỰ -->
+                <a href="@Url.Action("Staff", "Admin")#personnel"
+                   data-permission="staff">
+
+                    <i class="fa-solid fa-users-gear"></i>
+
+                    Nhân sự
+
+                </a>
+
+
+                <!-- LỊCH LÀM -->
+                <a href="@Url.Action("Staff", "Admin")#schedule"
+                   data-permission="staff">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    Lịch làm
+
+                </a>
+
+            </nav>
+
+
+            <!-- SIDEBAR BOTTOM -->
+            <div class="admin-sidebar-bottom">
+
+
+                <!-- XEM WEBSITE -->
+                <a href="@Url.Action("Index", "Home")">
+
+                    <i class="fa-solid fa-store"></i>
+
+                    Xem website
+
+                </a>
+
+
+                <!-- ĐĂNG XUẤT -->
+                <a href="@Url.Action("Index", "Home")"
+                   data-logout>
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    Đăng xuất
+
+                </a>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- MAIN -->
+        <main class="admin-main">
+
+
+            <!-- TOPBAR -->
+            <header class="admin-topbar">
+
+
+                <div>
+
+                    <span class="admin-breadcrumb">
+                        MAISONÉ / ADMIN
+                    </span>
+
+                    <h1>
+                        Khách hàng
+                    </h1>
+
+                </div>
+
+
+                <div class="admin-top-actions">
+
+                    <span class="admin-avatar">
+                        A
+                    </span>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- CONTENT -->
+            <section class="admin-content">
+
+
+                <!-- PAGE HEADING -->
+                <div class="collection-head">
+
+                    <div>
+
+                        <div class="section-number">
+                            CUSTOMER DIRECTORY
+                        </div>
+
+                        <h1 class="page-title">
+                            Khách hàng
+                        </h1>
+
+                    </div>
+
+                </div>
+
+
+                <!-- NOTE -->
+                <p class="admin-report-note">
+
+                    Trang này quản lý thông tin khách hàng.
+                    Nhân viên phụ trách tư vấn và trả lời tin nhắn
+                    khách tại hộp thư riêng.
+
+                </p>
+
+
+                <!-- CUSTOMER CARD -->
+                <div class="ui-card admin-customer-card">
+
+
+                    <h2>
+                        Danh sách khách hàng demo
+                    </h2>
+
+
+                    <div class="admin-table-scroll">
+
+
+                        <table class="data-table">
+
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Khách hàng
+                                    </th>
+
+                                    <th>
+                                        Hạng
+                                    </th>
+
+                                    <th>
+                                        Điểm
+                                    </th>
+
+                                    <th>
+                                        Tổng chi
+                                    </th>
+
+                                    <th>
+                                        Trạng thái
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+
+                                <tr>
+
+                                    <td>
+                                        Nguyễn Minh Anh
+                                    </td>
+
+                                    <td>
+                                        GOLD
+                                    </td>
+
+                                    <td>
+                                        5.820
+                                    </td>
+
+                                    <td>
+                                        18.420.000đ
+                                    </td>
+
+                                    <td>
+
+                                        <span class="status-pill">
+                                            VIP
+                                        </span>
+
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        Trần Ngọc Mai
+                                    </td>
+
+                                    <td>
+                                        SILVER
+                                    </td>
+
+                                    <td>
+                                        1.280
+                                    </td>
+
+                                    <td>
+                                        5.890.000đ
+                                    </td>
+
+                                    <td>
+
+                                        <span class="status-pill">
+                                            Active
+                                        </span>
+
+                                    </td>
+
+                                </tr>
+
+
+                            </tbody>
+
+                        </table>
+
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- TOAST -->
+    <div id="toast"
+         class="toast"
+         role="status"
+         aria-live="polite">
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="~/Scripts/Java/data.js"></script>
+
+    <script src="~/Scripts/Java/common.js"></script>
+
+</body>
+
+</html>

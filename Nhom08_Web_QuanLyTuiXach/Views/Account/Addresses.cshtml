@@ -1,0 +1,229 @@
+﻿@{
+    ViewBag.Title = "Addresses";
+}
+
+<!doctype html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet"
+          href="~/Content/css/style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <title>Addresses</title>
+
+</head>
+
+
+<body>
+
+
+    <!-- ANNOUNCEMENT -->
+    <div class="announcement">
+        MAISONÉ · PREMIUM BAG STORE
+    </div>
+
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="header-inner">
+
+
+            <!-- LEFT NAV -->
+            <nav class="left-nav">
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Home")">
+
+                    HOME
+
+                </a>
+
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Products")">
+
+                    COLLECTION
+
+                </a>
+
+            </nav>
+
+
+
+            <!-- LOGO -->
+            <a class="logo"
+               href="@Url.Action("Index", "Home")">
+
+                MAISONÉ
+
+                <span class="logo-sub">
+                    FASHION BAGS
+                </span>
+
+            </a>
+
+
+
+            <!-- RIGHT NAV -->
+            <nav class="right-nav">
+
+
+                <!-- ACCOUNT -->
+                <a class="nav-link"
+                   href="@Url.Action("Login", "Account")">
+
+                    <i class="fa-regular fa-user"></i>
+
+                </a>
+
+
+                <!-- WISHLIST -->
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Wishlist")">
+
+                    <i class="fa-regular fa-heart"></i>
+
+                </a>
+
+
+                <!-- CART -->
+                <a class="header-icon"
+                   href="@Url.Action("Index", "Cart")">
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                    <span class="cart-number"
+                          id="cartNumber">
+
+                        0
+
+                    </span>
+
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- MAIN -->
+    <main class="page-shell">
+
+
+        <!-- PAGE HEADER -->
+        <div class="collection-head">
+
+
+            <h1 class="page-title">
+                Sổ địa chỉ
+            </h1>
+
+
+            <button class="collection-link"
+                    type="button"
+                    onclick="toast('Đã mở form thêm địa chỉ')">
+
+                + THÊM ĐỊA CHỈ
+
+            </button>
+
+        </div>
+
+
+
+        <!-- ADDRESS LIST -->
+        <div class="page-grid">
+
+
+            <!-- DEFAULT ADDRESS -->
+            <div class="ui-card">
+
+                <h3>
+                    Địa chỉ mặc định
+                </h3>
+
+
+                <p>
+
+                    Nguyễn Minh Anh
+                    <br>
+
+                    0909000001
+                    <br>
+
+                    123 Nguyễn Huệ, Quận 1, TP.HCM
+
+                </p>
+
+
+                <span class="status-pill">
+
+                    MẶC ĐỊNH
+
+                </span>
+
+            </div>
+
+
+
+            <!-- OFFICE ADDRESS -->
+            <div class="ui-card">
+
+                <h3>
+                    Địa chỉ văn phòng
+                </h3>
+
+
+                <p>
+
+                    456 Điện Biên Phủ,
+                    Bình Thạnh, TP.HCM
+
+                </p>
+
+
+                <button class="ui-btn"
+                        type="button"
+                        onclick="toast('Đã chọn địa chỉ')">
+
+                    CHỌN
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- TOAST -->
+    <div id="toast"
+         class="toast">
+    </div>
+
+
+
+    <!-- JAVASCRIPT -->
+    <script src="~/Scripts/Java/data.js"></script>
+
+    <script src="~/Scripts/Java/common.js"></script>
+
+
+</body>
+
+</html>

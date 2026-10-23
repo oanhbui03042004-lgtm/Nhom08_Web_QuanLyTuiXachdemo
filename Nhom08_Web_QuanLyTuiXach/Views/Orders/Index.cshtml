@@ -1,0 +1,217 @@
+﻿@{
+    ViewBag.Title = "Đơn hàng & theo dõi giao hàng · MAISONÉ";
+}
+
+<!doctype html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <title>Đơn hàng & theo dõi giao hàng · MAISONÉ</title>
+
+    <link rel="stylesheet"
+          href="~/Content/css/style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+
+<body class="order-page">
+
+
+    <!-- ANNOUNCEMENT -->
+    <div class="announcement">
+        MAISONÉ · THEO DÕI HÀNH TRÌNH ĐƠN HÀNG
+    </div>
+
+
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="header-inner">
+
+
+            <!-- LEFT NAV -->
+            <nav class="left-nav">
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Home")">
+
+                    TRANG CHỦ
+
+                </a>
+
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Products")">
+
+                    SẢN PHẨM
+
+                </a>
+
+            </nav>
+
+
+
+            <!-- LOGO -->
+            <a class="logo"
+               href="@Url.Action("Index", "Home")">
+
+                MAISONÉ
+
+                <span class="logo-sub">
+                    BAGS & ACCESSORIES
+                </span>
+
+            </a>
+
+
+
+            <!-- RIGHT NAV -->
+            <nav class="right-nav">
+
+                <a class="nav-link"
+                   href="@Url.Action("Customer", "Account")">
+
+                    TÀI KHOẢN
+
+                </a>
+
+
+                <a class="header-icon"
+                   href="@Url.Action("Index", "Cart")">
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                    <span class="cart-number"
+                          id="cartNumber">
+                        0
+                    </span>
+
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- MAIN -->
+    <main class="page-shell order-tracking-shell">
+
+
+        <!-- BREADCRUMB -->
+        <div class="service-breadcrumb">
+
+            <a href="@Url.Action("Index", "Home")">
+                Trang chủ
+            </a>
+
+            <span>/</span>
+
+            <span>
+                Đơn hàng
+            </span>
+
+        </div>
+
+
+
+        <!-- HERO -->
+        <section class="service-hero order-hero">
+
+            <span class="eyebrow">
+                MY ORDERS
+            </span>
+
+            <h1 class="page-title">
+                Đơn hàng của bạn
+            </h1>
+
+            <p>
+                Theo dõi trạng thái xử lý và hành trình giao hàng tại đây.
+            </p>
+
+        </section>
+
+
+
+        <!-- DEMO NOTE -->
+        <div class="order-demo-note">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            <span>
+                Bản demo cho phép bấm cập nhật trạng thái
+                để thử hành trình từ đặt hàng đến giao hàng.
+                Không có đơn vị vận chuyển thật.
+            </span>
+
+        </div>
+
+
+
+        <!-- ORDERS -->
+        <section id="ordersList"
+                 class="orders-list"
+                 aria-live="polite">
+        </section>
+
+
+
+        <!-- FOOTER ACTIONS -->
+        <div class="service-footer-actions">
+
+
+            <!-- CONTINUE SHOPPING -->
+            <a class="ui-btn"
+               href="@Url.Action("Index", "Products")">
+
+                TIẾP TỤC MUA SẮM
+
+            </a>
+
+
+            <!-- MY ACCOUNT -->
+            <a class="ui-btn light"
+               href="@Url.Action("Customer", "Account")">
+
+                TÀI KHOẢN CỦA TÔI
+
+            </a>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- TOAST -->
+    <div id="toast"
+         class="toast"
+         role="status"
+         aria-live="polite">
+    </div>
+
+
+
+    <!-- JAVASCRIPT -->
+    <script src="~/Scripts/Java/data.js"></script>
+
+    <script src="~/Scripts/Java/common.js"></script>
+
+    <script src="~/Scripts/Java/orders.js"></script>
+
+</body>
+
+</html>

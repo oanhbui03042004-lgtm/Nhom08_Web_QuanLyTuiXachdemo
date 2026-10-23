@@ -1,0 +1,369 @@
+﻿@{
+    ViewBag.Title = "Voucher & Tích điểm · MAISONÉ";
+}
+
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="~/Content/css/style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <title>Voucher & Tích điểm · MAISONÉ</title>
+</head>
+
+<body class="voucher-page">
+
+    <div class="announcement">
+        MAISONÉ · PREMIUM BAG STORE
+    </div>
+
+    <header class="header">
+
+        <div class="header-inner">
+
+            <!-- LEFT NAV -->
+            <nav class="left-nav">
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Home")">
+                    HOME
+                </a>
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Products")">
+                    COLLECTION
+                </a>
+
+            </nav>
+
+
+            <!-- LOGO -->
+            <a class="logo"
+               href="@Url.Action("Index", "Home")">
+
+                MAISONÉ
+
+                <span class="logo-sub">
+                    FASHION BAGS
+                </span>
+
+            </a>
+
+
+            <!-- RIGHT NAV -->
+            <nav class="right-nav">
+
+                <a class="nav-link"
+                   href="@Url.Action("Customer", "Account")">
+                    <i class="fa-regular fa-user"></i>
+                </a>
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Wishlist")">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+                <a class="header-icon"
+                   href="@Url.Action("Index", "Cart")">
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                    <span class="cart-number"
+                          id="cartNumber">
+                        0
+                    </span>
+
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <main class="page-shell">
+
+        <!-- HEADER -->
+        <div class="voucher-head">
+
+            <div>
+
+                <div class="section-number">
+                    MEMBERSHIP / REWARDS
+                </div>
+
+                <h1 class="page-title">
+                    Voucher & tích điểm
+                </h1>
+
+                <p class="account-subtitle">
+                    Tất cả ưu đãi của bạn được gom tại một nơi:
+                    voucher có thể dùng, điểm thành viên và quyền lợi theo hạng.
+                </p>
+
+            </div>
+
+            <a class="ui-btn light"
+               href="@Url.Action("Customer", "Account")">
+                ← TÀI KHOẢN
+            </a>
+
+        </div>
+
+
+        <!-- POINTS HERO -->
+        <section class="points-hero">
+
+            <div>
+
+                <span class="eyebrow">
+                    HẠNG THÀNH VIÊN
+                </span>
+
+                <h2>
+                    SILVER
+                </h2>
+
+                <p>
+                    Bạn đang có <strong>1.280 điểm</strong>
+                </p>
+
+                <div class="points-progress">
+                    <span style="width:64%"></span>
+                </div>
+
+                <small>
+                    Còn 720 điểm để lên GOLD
+                </small>
+
+            </div>
+
+
+            <div class="points-badge">
+
+                <i class="fa-solid fa-crown"></i>
+
+                <b>
+                    1.280
+                </b>
+
+                <span>
+                    POINTS
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- VOUCHER -->
+        <section class="reward-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <span class="eyebrow">
+                        01 / VOUCHER
+                    </span>
+
+                    <h2>
+                        Voucher của tôi
+                    </h2>
+
+                </div>
+
+                <span class="reward-count">
+                    08 mã ưu đãi
+                </span>
+
+            </div>
+
+
+            <!-- JS vouchers.js render voucher vào đây -->
+            <div class="reward-grid"
+                 id="rewardGrid">
+            </div>
+
+        </section>
+
+
+        <!-- MEMBERSHIP -->
+        <section class="reward-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <span class="eyebrow">
+                        02 / MEMBERSHIP
+                    </span>
+
+                    <h2>
+                        Hạng thành viên
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="tier-grid">
+
+                <!-- SILVER -->
+                <div class="tier-card current">
+
+                    <span>
+                        SILVER · HIỆN TẠI
+                    </span>
+
+                    <strong>
+                        0 – 1.999 điểm
+                    </strong>
+
+                    <p>
+                        Ưu đãi cơ bản và tích điểm theo đơn hàng.
+                    </p>
+
+                </div>
+
+
+                <!-- GOLD -->
+                <div class="tier-card">
+
+                    <span>
+                        GOLD
+                    </span>
+
+                    <strong>
+                        2.000 – 4.999 điểm
+                    </strong>
+
+                    <p>
+                        Voucher thành viên, ưu đãi sinh nhật
+                        và hỗ trợ ưu tiên.
+                    </p>
+
+                </div>
+
+
+                <!-- DIAMOND -->
+                <div class="tier-card">
+
+                    <span>
+                        DIAMOND
+                    </span>
+
+                    <strong>
+                        5.000+ điểm
+                    </strong>
+
+                    <p>
+                        Đặc quyền cao cấp và ưu đãi riêng theo hạng.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- POINTS -->
+        <section class="reward-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <span class="eyebrow">
+                        03 / POINTS
+                    </span>
+
+                    <h2>
+                        Tích lũy điểm
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="points-rules">
+
+                <!-- MUA HÀNG -->
+                <div>
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                    <b>
+                        Mua hàng
+                    </b>
+
+                    <p>
+                        Mỗi 10.000đ thanh toán nhận 1 điểm.
+                    </p>
+
+                </div>
+
+
+                <!-- ĐÁNH GIÁ -->
+                <div>
+
+                    <i class="fa-solid fa-star"></i>
+
+                    <b>
+                        Đánh giá
+                    </b>
+
+                    <p>
+                        Đánh giá sản phẩm sau khi mua
+                        để nhận thêm điểm.
+                    </p>
+
+                </div>
+
+
+                <!-- ĐỔI ĐIỂM -->
+                <div>
+
+                    <i class="fa-solid fa-gift"></i>
+
+                    <b>
+                        Đổi điểm
+                    </b>
+
+                    <p>
+                        Dùng điểm để đổi voucher trong
+                        các chương trình đang áp dụng.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- TOAST -->
+    <div id="toast"
+         class="toast">
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="~/Scripts/Java/data.js"></script>
+    <script src="~/Scripts/Java/vouchers.js"></script>
+
+</body>
+
+</html>

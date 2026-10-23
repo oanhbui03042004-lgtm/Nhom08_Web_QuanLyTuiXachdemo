@@ -1,0 +1,224 @@
+﻿@{
+    ViewBag.Title = "Bộ sưu tập Mùa Hè · MAISONÉ";
+    ViewBag.BodyClass = "collection-page seasonal-page";
+    ViewBag.CollectionKey = "summer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- ANNOUNCEMENT -->
+<div class="announcement">
+    MAISONÉ · SUMMER ESCAPE
+</div>
+
+<!-- HEADER -->
+<header class="header">
+
+    <div class="header-inner">
+
+        <!-- LEFT NAV -->
+        <nav class="left-nav">
+
+            <a class="nav-link"
+               href="@Url.Action("Index", "Home")">
+                TRANG CHỦ
+            </a>
+
+            <a class="nav-link"
+               href="@Url.Action("Index", "Products")">
+                TẤT CẢ TÚI
+            </a>
+
+            <a class="nav-link"
+               href="@Url.Action("Customer", "Account")">
+                THÀNH VIÊN
+            </a>
+
+        </nav>
+
+        <!-- MOBILE BUTTON -->
+        <button class="mobile-button"
+                type="button"
+                onclick="toggleMobileMenu()"
+                aria-label="Mở menu">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+        <!-- LOGO -->
+        <a class="logo"
+           href="@Url.Action("Index", "Home")">
+
+            MAISONÉ
+
+            <span class="logo-sub">
+                FASHION BAGS
+            </span>
+
+        </a>
+
+        <!-- RIGHT NAV -->
+        <nav class="right-nav">
+
+            <a class="header-icon"
+               href="@Url.Action("Index", "Wishlist")"
+               aria-label="Yêu thích">
+
+                <i class="fa-regular fa-heart"></i>
+
+            </a>
+
+            <a class="header-icon"
+               href="@Url.Action("Index", "Cart")"
+               aria-label="Giỏ hàng">
+
+                <i class="fa-solid fa-bag-shopping"></i>
+
+                <span class="cart-number"
+                      id="cartNumber">
+                    0
+                </span>
+
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+<!-- MOBILE MENU -->
+<nav class="mobile-menu"
+     id="mobileMenu">
+
+    <a href="@Url.Action("Index", "Home")">
+        TRANG CHỦ
+    </a>
+
+    <a href="@Url.Action("Index", "Products")">
+        TẤT CẢ TÚI
+    </a>
+
+    <a href="@Url.Action("Customer", "Account")">
+        THÀNH VIÊN
+    </a>
+
+    <a href="@Url.Action("Index", "Cart")">
+        GIỎ HÀNG
+    </a>
+
+</nav>
+
+<!-- MAIN -->
+<main class="page-shell collection-shell">
+
+    <!-- BREADCRUMB -->
+    <div class="service-breadcrumb">
+
+        <a href="@Url.Action("Index", "Home")">
+            Trang chủ
+        </a>
+
+        <span>/</span>
+
+        <a href="@Url.Action("Index", "Products")">
+            Bộ sưu tập
+        </a>
+
+        <span>/</span>
+
+        <span>
+            Mùa Hè
+        </span>
+
+    </div>
+
+    <!-- SEASONAL HERO -->
+    <section class="seasonal-hero seasonal-summer">
+
+        <span class="eyebrow">
+            02 / SUMMER ESCAPE
+        </span>
+
+        <h1>
+            Mùa Hè
+            <br>
+            <em>nhẹ tênh.</em>
+        </h1>
+
+        <p>
+            Những thiết kế linh hoạt cho chuyến đi,
+            buổi dạo phố và ngày nắng đẹp.
+        </p>
+
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="catalog-products">
+
+        <div class="catalog-heading">
+
+            <div>
+
+                <span class="eyebrow">
+                    CURATED EDIT
+                </span>
+
+                <h2>
+                    Túi trong bộ sưu tập Mùa Hè
+                </h2>
+
+            </div>
+
+            <span class="catalog-count"
+                  id="catalogCount">
+            </span>
+
+        </div>
+
+        <!-- JS render sản phẩm -->
+        <div id="products"
+             class="product-grid catalog-grid">
+        </div>
+
+    </section>
+
+    <!-- FOOTER ACTIONS -->
+    <div class="service-footer-actions">
+
+        <a class="ui-btn light"
+           href="@Url.Action("Index", "Products")">
+
+            ← TẤT CẢ SẢN PHẨM
+
+        </a>
+
+        <a class="ui-btn"
+           href="@Url.Action("Work", "Collection")">
+
+            KHÁM PHÁ BỘ SƯU TẬP CÔNG SỞ →
+
+        </a>
+
+    </div>
+
+</main>
+
+<!-- TOAST -->
+<div id="toast"
+     class="toast"
+     role="status"
+     aria-live="polite">
+</div>
+
+@section Scripts {
+
+    <script>
+        window.productDetailUrl =
+            '@Url.Action("Detail", "Products")';
+    </script>
+
+    <!-- CHỈ chạy collection.js -->
+    <script src="@Url.Content("~/Scripts/Java/collection.js")"></script>
+
+}

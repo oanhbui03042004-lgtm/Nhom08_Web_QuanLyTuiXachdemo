@@ -1,0 +1,393 @@
+﻿@{
+    ViewBag.Title = "Thanh toán · MAISONÉ";
+}
+
+<!doctype html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <title>Thanh toán · MAISONÉ</title>
+
+    <link rel="stylesheet"
+          href="~/Content/css/style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ANNOUNCEMENT -->
+    <div class="announcement">
+        MAISONÉ · HOÀN TẤT ĐƠN HÀNG CỦA BẠN
+    </div>
+
+
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="header-inner">
+
+
+            <!-- LEFT NAV -->
+            <nav class="left-nav">
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Home")">
+
+                    TRANG CHỦ
+
+                </a>
+
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Products")">
+
+                    SẢN PHẨM
+
+                </a>
+
+            </nav>
+
+
+
+            <!-- LOGO -->
+            <a class="logo"
+               href="@Url.Action("Index", "Home")">
+
+                MAISONÉ
+
+                <span class="logo-sub">
+                    BAGS & ACCESSORIES
+                </span>
+
+            </a>
+
+
+
+            <!-- RIGHT NAV -->
+            <nav class="right-nav">
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Cart")">
+
+                    QUAY LẠI GIỎ HÀNG
+
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- MAIN -->
+    <main class="page-shell checkout-page">
+
+
+        <!-- BREADCRUMB -->
+        <div class="service-breadcrumb">
+
+
+            <a href="@Url.Action("Index", "Home")">
+
+                Trang chủ
+
+            </a>
+
+
+            <span>
+                /
+            </span>
+
+
+            <a href="@Url.Action("Index", "Cart")">
+
+                Giỏ hàng
+
+            </a>
+
+
+            <span>
+                /
+            </span>
+
+
+            <span>
+                Thanh toán
+            </span>
+
+        </div>
+
+
+
+        <!-- HEADING -->
+        <div class="checkout-heading">
+
+
+            <span class="eyebrow">
+                SECURE CHECKOUT · DEMO
+            </span>
+
+
+            <h1 class="page-title">
+                Thông tin nhận hàng
+            </h1>
+
+
+            <p>
+                Kiểm tra địa chỉ và lựa chọn thanh toán để tạo đơn thử.
+            </p>
+
+        </div>
+
+
+
+        <!-- CHECKOUT LAYOUT -->
+        <div class="cart-layout">
+
+
+            <!-- CHECKOUT FORM -->
+            <section class="ui-card checkout-form-card">
+
+
+                <form id="checkoutForm"
+                      class="account-form checkout-form">
+
+
+                    <!-- HỌ TÊN -->
+                    <div class="account-field">
+
+
+                        <label for="checkoutCustomer">
+                            Họ tên người nhận *
+                        </label>
+
+
+                        <input class="ui-input"
+                               id="checkoutCustomer"
+                               name="customer"
+                               autocomplete="name"
+                               required>
+
+                    </div>
+
+
+
+                    <!-- SỐ ĐIỆN THOẠI -->
+                    <div class="account-field">
+
+
+                        <label for="checkoutPhone">
+                            Số điện thoại *
+                        </label>
+
+
+                        <input class="ui-input"
+                               id="checkoutPhone"
+                               name="phone"
+                               type="tel"
+                               autocomplete="tel"
+                               pattern="[0-9+ ]{8,18}"
+                               required>
+
+                    </div>
+
+
+
+                    <!-- ĐỊA CHỈ -->
+                    <div class="account-field">
+
+
+                        <label for="checkoutAddress">
+                            Địa chỉ giao hàng *
+                        </label>
+
+
+                        <textarea class="ui-input"
+                                  id="checkoutAddress"
+                                  name="address"
+                                  rows="3"
+                                  autocomplete="street-address"
+                                  required></textarea>
+
+                    </div>
+
+
+
+                    <!-- PHƯƠNG THỨC THANH TOÁN -->
+                    <div class="account-field">
+
+
+                        <label for="checkoutPayment">
+                            Phương thức thanh toán
+                        </label>
+
+
+                        <select class="ui-input"
+                                id="checkoutPayment"
+                                name="payment">
+
+
+                            <option value="COD">
+                                Thanh toán khi nhận hàng (COD)
+                            </option>
+
+
+                            <option value="BANK_TRANSFER">
+                                Chuyển khoản ngân hàng
+                            </option>
+
+
+                            <option value="E_WALLET">
+                                Ví điện tử
+                            </option>
+
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- ĐẶT HÀNG -->
+                    <button class="ui-btn checkout-submit"
+                            type="submit">
+
+                        ĐẶT HÀNG
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+
+
+                    <!-- DEMO NOTE -->
+                    <p class="demo-disclaimer">
+
+                        Đây là đơn hàng demo,
+                        không phát sinh thanh toán thật.
+
+                    </p>
+
+
+                </form>
+
+
+
+                <!-- CHECKOUT SUCCESS -->
+                <section id="checkoutSuccess"
+                         class="checkout-success"
+                         aria-live="polite"
+                         hidden>
+
+
+                    <span class="checkout-success-icon">
+
+                        <i class="fa-solid fa-check"></i>
+
+                    </span>
+
+
+                    <h2>
+                        Đơn hàng đã được ghi nhận
+                    </h2>
+
+
+                    <p>
+                        Nhấn nút bên dưới để xem đơn vừa đặt
+                        và theo dõi hành trình giao hàng.
+                    </p>
+
+
+
+                    <!-- XEM ĐƠN VỪA ĐẶT -->
+                    <a id="checkoutViewOrder"
+                       class="ui-btn"
+                       href="@Url.Action("Index", "Orders")">
+
+                        XEM ĐƠN ĐẶT
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+
+
+                    <!-- XEM TẤT CẢ ĐƠN -->
+                    <a class="checkout-all-orders"
+                       href="@Url.Action("Index", "Orders")">
+
+                        Xem tất cả đơn hàng
+
+                    </a>
+
+
+                </section>
+
+            </section>
+
+
+
+            <!-- ORDER SUMMARY -->
+            <aside class="ui-card checkout-summary-card">
+
+
+                <h2>
+                    Đơn hàng của bạn
+                </h2>
+
+
+                <div id="checkoutSummary">
+                </div>
+
+
+            </aside>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- TOAST -->
+    <div id="toast"
+         class="toast"
+         role="status"
+         aria-live="polite">
+    </div>
+
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        // URL MVC dùng trong checkout.js
+        const cartUrl = '@Url.Action("Index", "Cart")';
+        const ordersUrl = '@Url.Action("Index", "Orders")';
+
+    </script>
+
+
+    <script src="~/Scripts/Java/data.js"></script>
+
+    <script src="~/Scripts/Java/common.js"></script>
+
+    <script src="~/Scripts/Java/checkout.js"></script>
+
+
+</body>
+
+</html>

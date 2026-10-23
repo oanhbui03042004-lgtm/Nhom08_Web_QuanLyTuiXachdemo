@@ -1,0 +1,139 @@
+﻿@{
+    ViewBag.Title = "Wishlist";
+}
+
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="~/Content/css/style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <title>Wishlist</title>
+</head>
+
+<body>
+
+    <div class="announcement">
+        MAISONÉ · PREMIUM BAG STORE
+    </div>
+
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="header-inner">
+
+            <!-- LEFT NAV -->
+            <nav class="left-nav">
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Home")">
+                    HOME
+                </a>
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Products")">
+                    COLLECTION
+                </a>
+
+            </nav>
+
+
+            <!-- LOGO -->
+            <a class="logo"
+               href="@Url.Action("Index", "Home")">
+
+                MAISONÉ
+
+                <span class="logo-sub">
+                    FASHION BAGS
+                </span>
+
+            </a>
+
+
+            <!-- RIGHT NAV -->
+            <nav class="right-nav">
+
+                <a class="nav-link"
+                   href="@Url.Action("Login", "Account")"
+                   aria-label="Tài khoản">
+
+                    <i class="fa-regular fa-user"></i>
+
+                </a>
+
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Wishlist")"
+                   aria-label="Sản phẩm yêu thích">
+
+                    <i class="fa-regular fa-heart"></i>
+
+                </a>
+
+
+                <a class="header-icon"
+                   href="@Url.Action("Index", "Cart")"
+                   aria-label="Giỏ hàng">
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                    <span class="cart-number"
+                          id="cartNumber">
+                        0
+                    </span>
+
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- MAIN -->
+    <main class="page-shell">
+
+        <div class="collection-head">
+
+            <h1 class="page-title">
+                Wishlist
+            </h1>
+
+            <a class="collection-link"
+               href="@Url.Action("Index", "Products")">
+                KHÁM PHÁ ↗
+            </a>
+
+        </div>
+
+
+        <!-- wishlist.js render sản phẩm vào đây -->
+        <div id="wish"
+             class="product-grid">
+        </div>
+
+    </main>
+
+
+    <!-- TOAST -->
+    <div id="toast"
+         class="toast">
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="~/Scripts/Java/data.js"></script>
+    <script src="~/Scripts/Java/wishlist.js"></script>
+
+</body>
+
+</html>

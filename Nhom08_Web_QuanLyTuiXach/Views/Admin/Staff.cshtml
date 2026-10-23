@@ -1,0 +1,1222 @@
+﻿@{
+    ViewBag.Title = "Nhân sự · MAISONÉ";
+    ViewBag.BodyClass = "admin-body";
+    ViewBag.MvcPage = "staffAdmin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="admin-app">
+
+    <!-- =========================
+         SIDEBAR ADMIN
+         ========================= -->
+    <aside class="admin-sidebar">
+
+        <div class="admin-brand">
+            MAISONÉ
+            <small>ADMIN CONSOLE</small>
+        </div>
+
+        <div class="admin-user">
+            <i class="fa-solid fa-circle-user"></i>
+
+            <div>
+                <b data-admin-name>System Admin</b>
+                <span data-admin-role>Quản trị hệ thống</span>
+            </div>
+        </div>
+
+        <nav>
+
+            <!-- Tổng quan -->
+            <a href="@Url.Action("Index", "Admin")"
+               data-mvc-page="admin"
+               data-permission="dashboard">
+
+                <i class="fa-solid fa-gauge-high"></i>
+                Tổng quan
+
+            </a>
+
+            <!-- Sản phẩm -->
+            <a href="@Url.Action("Products", "Admin")"
+               data-mvc-page="products"
+               data-permission="products">
+
+                <i class="fa-solid fa-bag-shopping"></i>
+                Sản phẩm
+
+            </a>
+
+            <!-- Đơn hàng -->
+            <a href="@Url.Action("Orders", "Admin")"
+               data-mvc-page="orders"
+               data-permission="orders">
+
+                <i class="fa-solid fa-receipt"></i>
+                Đơn hàng & tài chính
+
+            </a>
+
+            <!-- Theo dõi vận đơn -->
+            <a href="@Url.Action("Shipping", "Admin")"
+               data-mvc-page="shipping"
+               data-permission="tracking">
+
+                <i class="fa-solid fa-truck-fast"></i>
+                Theo dõi vận đơn
+
+            </a>
+
+            <!-- Kho hàng -->
+            <a href="@Url.Action("Inventory", "Admin")"
+               data-mvc-page="inventory"
+               data-permission="inventory">
+
+                <i class="fa-solid fa-boxes-stacked"></i>
+                Kho hàng
+
+            </a>
+
+            <!-- Voucher -->
+            <a href="@Url.Action("Marketing", "Admin")"
+               data-mvc-page="marketing"
+               data-permission="vouchers">
+
+                <i class="fa-solid fa-ticket"></i>
+                Voucher
+
+            </a>
+
+            <!-- Nhân sự -->
+            <a href="@Url.Action("Staff", "Admin")#personnel"
+               data-mvc-page="staffAdmin"
+               data-permission="staff">
+
+                <i class="fa-solid fa-users-gear"></i>
+                Nhân sự
+
+            </a>
+
+            <!-- Lịch làm -->
+            <a href="@Url.Action("Staff", "Admin")#schedule"
+               data-mvc-page="staffAdmin"
+               data-permission="staff">
+
+                <i class="fa-solid fa-calendar-days"></i>
+                Lịch làm
+
+            </a>
+
+        </nav>
+
+        <div class="admin-sidebar-bottom">
+
+            <a href="@Url.Action("Index", "Home")">
+
+                <i class="fa-solid fa-store"></i>
+                Xem website
+
+            </a>
+
+            <a href="@Url.Action("Index", "Home")"
+               data-logout>
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Đăng xuất
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN
+         ========================= -->
+    <main class="admin-main">
+
+        <!-- TOP BAR -->
+        <header class="admin-topbar">
+
+            <div>
+
+                <span class="admin-breadcrumb"
+                      id="staffAdminBreadcrumb">
+                    PEOPLE OPERATIONS
+                </span>
+
+                <h1 id="staffAdminTitle">
+                    Nhân sự
+                </h1>
+
+            </div>
+
+            <div class="admin-top-actions">
+
+                <span class="admin-avatar">
+                    HR
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             CONTENT
+             ========================= -->
+        <section class="admin-content">
+
+
+            <!-- =========================
+                 PERSONNEL HEADER
+                 ========================= -->
+            <div class="collection-head staff-directory-hero"
+                 id="personnelHeader"
+                 data-hr-view="personnel">
+
+                <div>
+
+                    <div class="section-number">
+                        PEOPLE OPERATIONS / TEAM DIRECTORY
+                    </div>
+
+                    <h1 class="page-title">
+                        Quản lý nhân sự
+                    </h1>
+
+                    <p>
+                        Quản lý hồ sơ cá nhân, thông tin liên hệ,
+                        giấy tờ và phân công của từng nhân viên.
+                    </p>
+
+                </div>
+
+                <div class="staff-directory-toolbar">
+
+                    <button class="ui-btn"
+                            id="exportStaff"
+                            type="button">
+
+                        <i class="fa-solid fa-file-excel"></i>
+                        XUẤT EXCEL
+
+                    </button>
+
+                    <button class="collection-link"
+                            id="openEmployeeForm"
+                            type="button">
+
+                        <i class="fa-solid fa-user-plus"></i>
+                        THÊM NHÂN VIÊN
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 STAFF DIRECTORY
+                 ========================= -->
+            <div class="admin-section-heading staff-directory-heading"
+                 data-hr-view="personnel">
+
+                <div>
+
+                    <span class="eyebrow">
+                        TEAM DIRECTORY
+                    </span>
+
+                    <h2>
+                        Hồ sơ nhân viên
+                    </h2>
+
+                    <p>
+                        Ngày sinh được dùng để hiển thị tuổi.
+                        Hồ sơ còn thiếu thông tin cá nhân sẽ được
+                        đánh dấu để người quản lý cập nhật.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- SEARCH -->
+            <label class="staff-search"
+                   data-hr-view="personnel">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <span class="sr-only">
+                    Tìm nhân viên
+                </span>
+
+                <input id="staffSearch"
+                       type="search"
+                       placeholder="Tìm theo họ tên, email, số điện thoại, CCCD, khu vực..."
+                       autocomplete="off">
+
+                <kbd>⌕</kbd>
+
+            </label>
+
+
+            <!-- SEARCH RESULT -->
+            <p class="staff-search-result"
+               id="staffSearchResult"
+               data-hr-view="personnel"
+               aria-live="polite">
+            </p>
+
+
+            <!-- STAFF LIST -->
+            <div class="staff-directory-grid"
+                 id="staffRows"
+                 data-hr-view="personnel"
+                 aria-live="polite">
+            </div>
+
+
+            <!-- EMPTY -->
+            <p class="admin-empty-state"
+               id="staffNoResults"
+               data-hr-view="personnel"
+               hidden>
+
+                Không tìm thấy nhân viên phù hợp.
+
+            </p>
+
+
+            <!-- =========================
+                 SCHEDULE
+                 ========================= -->
+            <div class="admin-hr-grid"
+                 id="scheduleSections"
+                 data-hr-view="schedule">
+
+
+                <!-- FULL TIME -->
+                <section class="ui-card"
+                         id="fullTimeSchedule">
+
+                    <div class="admin-section-heading">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                FULL-TIME SCHEDULE
+                            </span>
+
+                            <h2>
+                                Phân lịch nhân viên full-time
+                            </h2>
+
+                            <p>
+                                Chọn nhân viên, ngày và ca;
+                                lịch sẽ xuất hiện trong không gian
+                                làm việc của họ.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <form class="admin-compact-form"
+                          id="scheduleForm">
+
+                        <label>
+                            Nhân viên full-time
+
+                            <select name="employeeId"
+                                    class="fulltime-employee-options"
+                                    required>
+                            </select>
+
+                        </label>
+
+
+                        <label>
+                            Ngày làm
+
+                            <input name="date"
+                                   type="date"
+                                   required>
+
+                        </label>
+
+
+                        <label>
+                            Ca làm
+
+                            <select name="shift">
+
+                                <option>
+                                    Sáng · 08:00–14:00
+                                </option>
+
+                                <option>
+                                    Chiều · 14:00–20:00
+                                </option>
+
+                                <option>
+                                    Full-time · 08:00–17:00
+                                </option>
+
+                            </select>
+
+                        </label>
+
+
+                        <button class="collection-link"
+                                type="submit">
+
+                            LƯU LỊCH
+
+                        </button>
+
+                    </form>
+
+
+                    <div class="admin-table-scroll">
+
+                        <table class="data-table">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Ngày</th>
+                                    <th>Nhân viên</th>
+                                    <th>Ca</th>
+                                    <th></th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="scheduleRows">
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ATTENDANCE -->
+                <section class="ui-card">
+
+                    <div class="admin-section-heading">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                TIME & ATTENDANCE
+                            </span>
+
+                            <h2>
+                                Ghi nhận công
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <form class="admin-compact-form"
+                          id="attendanceForm">
+
+                        <label>
+                            Nhân viên
+
+                            <select name="employeeId"
+                                    class="employee-options"
+                                    required>
+                            </select>
+
+                        </label>
+
+
+                        <label>
+                            Ngày
+
+                            <input name="date"
+                                   type="date"
+                                   required>
+
+                        </label>
+
+
+                        <label>
+                            Tình trạng
+
+                            <select name="status">
+
+                                <option value="present">
+                                    Có mặt
+                                </option>
+
+                                <option value="late">
+                                    Đi trễ
+                                </option>
+
+                                <option value="absent">
+                                    Vắng không phép
+                                </option>
+
+                            </select>
+
+                        </label>
+
+
+                        <button class="collection-link"
+                                type="submit">
+
+                            GHI CÔNG
+
+                        </button>
+
+                    </form>
+
+
+                    <div class="admin-table-scroll">
+
+                        <table class="data-table">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Ngày</th>
+                                    <th>Nhân viên</th>
+                                    <th>Chấm công</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="attendanceRows">
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- =========================
+                 PART TIME OPEN SHIFTS
+                 ========================= -->
+            <section class="ui-card admin-history-card"
+                     id="partTimeShiftManagement"
+                     data-hr-view="schedule">
+
+                <div class="admin-section-heading">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            PART-TIME OPEN SHIFTS
+                        </span>
+
+                        <h2>
+                            Tạo ca trống cho nhân viên part-time
+                        </h2>
+
+                        <p>
+                            Ca được công bố sẽ hiện trong mục đăng ký
+                            ca của nhân viên part-time. Mỗi ca chỉ có
+                            một chỗ; sau khi được nhận, ca sẽ khóa
+                            với mọi tài khoản khác.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <form class="admin-inline-form"
+                      id="openShiftForm">
+
+                    <label>
+                        Ngày làm
+
+                        <input name="date"
+                               type="date"
+                               required>
+
+                    </label>
+
+
+                    <label>
+                        Ca làm
+
+                        <select name="shift">
+
+                            <option>
+                                Sáng · 08:00–14:00
+                            </option>
+
+                            <option>
+                                Chiều · 14:00–20:00
+                            </option>
+
+                            <option>
+                                Tối · 17:00–21:00
+                            </option>
+
+                        </select>
+
+                    </label>
+
+
+                    <label>
+                        Khu vực
+
+                        <input name="zone"
+                               value="Bán hàng"
+                               required
+                               maxlength="60">
+
+                    </label>
+
+
+                    <button class="collection-link"
+                            type="submit">
+
+                        CÔNG BỐ CA
+
+                    </button>
+
+                </form>
+
+
+                <div class="admin-table-scroll">
+
+                    <table class="data-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Ngày</th>
+                                <th>Ca / khu vực</th>
+                                <th>Trạng thái</th>
+                                <th>Đã đăng ký</th>
+                                <th>Thao tác</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="openShiftRows">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <p id="openShiftEmpty"
+                   class="admin-empty-state"
+                   hidden>
+
+                    Chưa có ca làm trống.
+                    Công bố ca để nhân viên đăng ký.
+
+                </p>
+
+            </section>
+
+
+            <!-- =========================
+                 LEAVE MANAGEMENT
+                 ========================= -->
+            <section class="ui-card admin-history-card"
+                     id="leaveManagement"
+                     data-hr-view="schedule">
+
+                <div class="admin-section-heading">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            LEAVE REQUESTS
+                        </span>
+
+                        <h2>
+                            Đơn xin nghỉ
+                        </h2>
+
+                        <p>
+                            Nhân viên chỉ gửi thời gian và lý do.
+                            Quản lý/admin chọn nghỉ hưởng lương,
+                            không lương hoặc từ chối khi xử lý.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-table-scroll">
+
+                    <table class="data-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Nhân viên</th>
+                                <th>Thời gian nghỉ</th>
+                                <th>Lý do</th>
+                                <th>Hình thức nghỉ</th>
+                                <th>Trạng thái</th>
+                                <th>Duyệt đơn</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="leaveRows">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <p class="admin-empty-state"
+                   id="leaveEmpty"
+                   hidden>
+
+                    Chưa có đơn xin nghỉ.
+
+                </p>
+
+            </section>
+
+
+            <!-- =========================
+                 PAYROLL
+                 ========================= -->
+            <section class="ui-card admin-history-card"
+                     id="payrollManagement"
+                     data-hr-view="schedule">
+
+                <div class="admin-section-heading">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            PAYROLL ESTIMATE
+                        </span>
+
+                        <h2>
+                            Ước tính lương
+                        </h2>
+
+                        <p>
+                            Ước tính theo hồ sơ lương/ngày và chấm công
+                            đã ghi nhận trong tháng chọn.
+                        </p>
+
+                    </div>
+
+
+                    <label>
+                        Tháng lương
+
+                        <input id="payrollMonth"
+                               type="month">
+
+                    </label>
+
+                </div>
+
+
+                <div class="admin-table-scroll">
+
+                    <table class="data-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Nhân viên</th>
+                                <th>Ngày công</th>
+                                <th>Phép hưởng lương</th>
+                                <th>Đơn giá/ngày</th>
+                                <th>Ước tính lương</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="payrollRows">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =========================
+     EMPLOYEE MODAL
+     ========================= -->
+<div class="admin-product-modal"
+     id="employeeModal"
+     hidden>
+
+    <div class="admin-product-backdrop"
+         data-close-employee>
+    </div>
+
+
+    <section class="admin-product-dialog employee-dialog"
+             role="dialog"
+             aria-modal="true"
+             aria-labelledby="employeeFormTitle">
+
+        <button class="admin-product-close"
+                type="button"
+                aria-label="Đóng"
+                data-close-employee>
+
+            &times;
+
+        </button>
+
+
+        <span class="section-number">
+            PEOPLE OPERATIONS
+        </span>
+
+
+        <h2 id="employeeFormTitle">
+            Thêm nhân viên
+        </h2>
+
+
+        <p class="employee-form-intro">
+            Điền thông tin cá nhân và công việc để tạo hồ sơ
+            nhân sự đầy đủ.
+        </p>
+
+
+        <form id="employeeForm">
+
+            <input type="hidden"
+                   name="id">
+
+
+            <!-- =========================
+                 PERSONAL
+                 ========================= -->
+            <div class="employee-form-section">
+
+                <h3>
+                    <i class="fa-regular fa-id-card"></i>
+                    Thông tin cá nhân
+                </h3>
+
+
+                <div class="admin-product-fields">
+
+                    <label>
+                        Họ và tên
+
+                        <input name="name"
+                               required
+                               maxlength="80"
+                               autocomplete="name">
+
+                    </label>
+
+
+                    <label>
+                        Ngày sinh
+
+                        <input name="dateOfBirth"
+                               type="date"
+                               required>
+
+                    </label>
+
+
+                    <label>
+                        Giới tính
+
+                        <select name="gender"
+                                required>
+
+                            <option value="">
+                                Chọn giới tính
+                            </option>
+
+                            <option>
+                                Nữ
+                            </option>
+
+                            <option>
+                                Nam
+                            </option>
+
+                            <option>
+                                Khác
+                            </option>
+
+                        </select>
+
+                    </label>
+
+
+                    <label>
+                        Số CCCD (12 số)
+
+                        <input name="identityNumber"
+                               inputmode="numeric"
+                               pattern="[0-9]{12}"
+                               minlength="12"
+                               maxlength="12"
+                               required
+                               placeholder="Nhập 12 chữ số"
+                               autocomplete="off">
+
+                    </label>
+
+
+                    <label>
+                        Số điện thoại
+
+                        <input name="phone"
+                               type="tel"
+                               inputmode="tel"
+                               pattern="0[0-9]{9}"
+                               minlength="10"
+                               maxlength="10"
+                               required
+                               placeholder="Ví dụ: 0901234567"
+                               autocomplete="tel">
+
+                    </label>
+
+
+                    <label>
+                        Email đăng nhập
+
+                        <input name="email"
+                               type="email"
+                               required
+                               maxlength="100"
+                               autocomplete="email">
+
+                    </label>
+
+
+                    <label class="employee-form-span">
+                        Địa chỉ thường trú
+
+                        <input name="address"
+                               required
+                               maxlength="180"
+                               autocomplete="street-address">
+
+                    </label>
+
+
+                    <label>
+                        Tên người liên hệ khẩn cấp
+
+                        <input name="emergencyContactName"
+                               maxlength="80">
+
+                    </label>
+
+
+                    <label>
+                        Số điện thoại khẩn cấp
+
+                        <input name="emergencyContactPhone"
+                               type="tel"
+                               inputmode="numeric"
+                               pattern="0[0-9]{9}"
+                               minlength="10"
+                               maxlength="10"
+                               placeholder="Không bắt buộc">
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 WORK & ACCOUNT
+                 ========================= -->
+            <div class="employee-form-section">
+
+                <h3>
+                    <i class="fa-solid fa-briefcase"></i>
+                    Công việc & tài khoản
+                </h3>
+
+
+                <div class="admin-product-fields">
+
+                    <label>
+                        Vai trò
+
+                        <select name="role">
+
+                            <option value="staff">
+                                Nhân viên
+                            </option>
+
+                            <option value="manager">
+                                Quản lý
+                            </option>
+
+                        </select>
+
+                    </label>
+
+
+                    <label>
+                        Khu vực phụ trách
+
+                        <select name="zone">
+
+                            <option>
+                                Bán hàng
+                            </option>
+
+                            <option>
+                                Kho hàng
+                            </option>
+
+                            <option>
+                                Chăm sóc khách hàng
+                            </option>
+
+                            <option>
+                                Đóng gói & giao nhận
+                            </option>
+
+                            <option>
+                                Vận hành
+                            </option>
+
+                        </select>
+
+                    </label>
+
+
+                    <label>
+                        Hình thức làm việc
+
+                        <select name="workMode">
+
+                            <option value="full-time">
+                                Full-time
+                            </option>
+
+                            <option value="part-time">
+                                Part-time
+                            </option>
+
+                        </select>
+
+                    </label>
+
+
+                    <label>
+                        Đơn giá/ngày (đ)
+
+                        <input name="dailyRate"
+                               type="number"
+                               min="0"
+                               step="10000"
+                               required>
+
+                    </label>
+
+
+                    <label>
+                        Mật khẩu đăng nhập
+
+                        <input name="password"
+                               type="password"
+                               minlength="6"
+                               placeholder="Bắt buộc khi thêm mới">
+
+                    </label>
+
+
+                    <label>
+                        Trạng thái
+
+                        <select name="active">
+
+                            <option value="true">
+                                Đang làm
+                            </option>
+
+                            <option value="false">
+                                Đã nghỉ
+                            </option>
+
+                        </select>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 PERMISSIONS
+                 ========================= -->
+            <fieldset class="admin-permissions">
+
+                <legend>
+                    Quyền truy cập hệ thống
+                </legend>
+
+
+                <label>
+                    <input type="checkbox"
+                           name="permissions"
+                           value="products">
+                    Sản phẩm
+                </label>
+
+
+                <label>
+                    <input type="checkbox"
+                           name="permissions"
+                           value="orders">
+                    Đơn hàng
+                </label>
+
+
+                <label>
+                    <input type="checkbox"
+                           name="permissions"
+                           value="tracking">
+                    Theo dõi vận đơn
+                </label>
+
+
+                <label>
+                    <input type="checkbox"
+                           name="permissions"
+                           value="inventory">
+                    Kho hàng
+                </label>
+
+
+                <label>
+                    <input type="checkbox"
+                           name="permissions"
+                           value="customers">
+                    Khách hàng
+                </label>
+
+
+                <label>
+                    <input type="checkbox"
+                           name="permissions"
+                           value="vouchers">
+                    Voucher
+                </label>
+
+
+                <label>
+                    <input type="checkbox"
+                           name="permissions"
+                           value="staff">
+                    Nhân sự
+                </label>
+
+
+                <label>
+                    <input type="checkbox"
+                           name="permissions"
+                           value="support">
+                    Hỗ trợ khách
+                </label>
+
+            </fieldset>
+
+
+            <p class="admin-product-hint">
+
+                Theo dõi vận đơn được bật mặc định cho nhân viên
+                và quản lý để hỗ trợ tư vấn. Admin cấp các quyền
+                khác và khu vực phụ trách. Khi sửa hồ sơ, để trống
+                mật khẩu để giữ nguyên mật khẩu hiện tại.
+
+            </p>
+
+
+            <!-- ACTIONS -->
+            <div class="admin-product-actions">
+
+                <button class="ui-btn"
+                        type="button"
+                        data-close-employee>
+
+                    HỦY
+
+                </button>
+
+
+                <button class="collection-link"
+                        type="submit">
+
+                    LƯU HỒ SƠ
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+</div>
+
+
+<!-- TOAST -->
+<div id="toast"
+     class="toast"
+     role="status"
+     aria-live="polite">
+</div>
+
+
+@section Scripts {
+
+    <script src="@Url.Content("~/Scripts/Java/data.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/Java/common.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/Java/date-picker.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/Java/form-select.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/Java/admin-staff.js")"></script>
+
+}

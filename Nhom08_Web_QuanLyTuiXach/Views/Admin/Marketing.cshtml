@@ -1,0 +1,550 @@
+﻿@{
+    ViewBag.Title = "Quản lý Voucher · MAISONÉ";
+}
+
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet"
+          href="~/Content/css/style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <title>Quản lý Voucher · MAISONÉ</title>
+</head>
+
+<body class="admin-body">
+
+    <div class="admin-app">
+
+        <!-- SIDEBAR -->
+        <aside class="admin-sidebar">
+
+            <div class="admin-brand">
+                MAISONÉ
+                <small>VOUCHER MANAGEMENT</small>
+            </div>
+
+
+            <!-- ADMIN USER -->
+            <div class="admin-user">
+
+                <i class="fa-solid fa-ticket"></i>
+
+                <div>
+
+                    <b data-admin-name>
+                        System Admin
+                    </b>
+
+                    <span data-admin-role>
+                        Quản trị hệ thống
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- MENU -->
+            <nav>
+
+                <!-- TỔNG QUAN -->
+                <a href="@Url.Action("Index", "Admin")"
+                   data-permission="dashboard">
+
+                    <i class="fa-solid fa-gauge-high"></i>
+
+                    Tổng quan
+
+                </a>
+
+
+                <!-- SẢN PHẨM -->
+                <a href="@Url.Action("Products", "Admin")"
+                   data-permission="products">
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                    Sản phẩm
+
+                </a>
+
+
+                <!-- ĐƠN HÀNG -->
+                <a href="@Url.Action("Orders", "Admin")"
+                   data-permission="orders">
+
+                    <i class="fa-solid fa-receipt"></i>
+
+                    Đơn hàng & tài chính
+
+                </a>
+
+
+                <!-- KHO -->
+                <a href="@Url.Action("Inventory", "Admin")"
+                   data-permission="inventory">
+
+                    <i class="fa-solid fa-boxes-stacked"></i>
+
+                    Kho hàng
+
+                </a>
+
+
+                <!-- KHÁCH HÀNG -->
+                <a href="@Url.Action("Customers", "Admin")"
+                   data-permission="customers">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    Khách hàng
+
+                </a>
+
+
+                <!-- VOUCHER -->
+                <a class="active"
+                   href="@Url.Action("Marketing", "Admin")"
+                   data-permission="vouchers">
+
+                    <i class="fa-solid fa-ticket"></i>
+
+                    Voucher
+
+                </a>
+
+
+                <!-- NHÂN SỰ -->
+                <a href="@Url.Action("Staff", "Admin")#personnel"
+                   data-permission="staff">
+
+                    <i class="fa-solid fa-users-gear"></i>
+
+                    Nhân sự
+
+                </a>
+
+
+                <!-- LỊCH LÀM -->
+                <a href="@Url.Action("Staff", "Admin")#schedule"
+                   data-permission="staff">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    Lịch làm
+
+                </a>
+
+            </nav>
+
+
+            <!-- SIDEBAR BOTTOM -->
+            <div class="admin-sidebar-bottom">
+
+                <!-- XEM CỬA HÀNG -->
+                <a href="@Url.Action("Index", "Home")">
+
+                    <i class="fa-solid fa-store"></i>
+
+                    Xem cửa hàng
+
+                </a>
+
+
+                <!-- ĐĂNG XUẤT -->
+                <a href="@Url.Action("Index", "Home")"
+                   data-logout>
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    Đăng xuất
+
+                </a>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- MAIN -->
+        <main class="admin-main">
+
+
+            <!-- TOPBAR -->
+            <header class="admin-topbar">
+
+                <div>
+
+                    <span class="admin-breadcrumb">
+                        VOUCHERS / PROMOTIONS
+                    </span>
+
+                    <h1>
+                        Quản lý Voucher
+                    </h1>
+
+                </div>
+
+
+                <div class="admin-top-actions">
+
+                    <span class="admin-avatar">
+
+                        <i class="fa-solid fa-ticket"></i>
+
+                    </span>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- CONTENT -->
+            <section class="admin-content">
+
+
+                <!-- PAGE TITLE -->
+                <div class="collection-head">
+
+                    <div>
+
+                        <div class="section-number">
+                            VOUCHER CONTROL CENTER
+                        </div>
+
+                        <h1 class="page-title">
+                            Voucher & ưu đãi
+                        </h1>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- GLOBAL VOUCHER TOGGLE -->
+                <div class="admin-global-toggle">
+
+                    <div>
+
+                        <b>
+                            Kích hoạt voucher trên toàn website
+                        </b>
+
+                        <span>
+                            Khi tắt, khách không thể xem hoặc sử dụng bất kỳ voucher nào.
+                        </span>
+
+                    </div>
+
+
+                    <label class="admin-switch">
+
+                        <input type="checkbox"
+                               id="voucherFeatureToggle">
+
+                        <span></span>
+
+                    </label>
+
+                </div>
+
+
+
+                <!-- VOUCHER BUILDER -->
+                <section class="admin-marketing-panel">
+
+
+                    <!-- HEADING -->
+                    <div class="admin-section-heading">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                VOUCHER BUILDER
+                            </span>
+
+                            <h2 id="voucherFormTitle">
+                                Tạo voucher mới
+                            </h2>
+
+                            <p>
+                                Tạo ưu đãi sản phẩm hoặc phí vận chuyển
+                                và cài đặt thời hạn.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- FORM -->
+                    <form class="admin-voucher-form"
+                          id="voucherForm">
+
+
+                        <!-- CODE GỐC -->
+                        <input type="hidden"
+                               name="originalCode">
+
+
+                        <!-- MÃ VOUCHER -->
+                        <label>
+
+                            Mã voucher
+
+                            <input name="code"
+                                   required
+                                   maxlength="24"
+                                   pattern="[A-Za-z0-9_]+"
+                                   placeholder="VD: SALE100">
+
+                        </label>
+
+
+
+                        <!-- TÊN ƯU ĐÃI -->
+                        <label>
+
+                            Tên ưu đãi
+
+                            <input name="label"
+                                   required
+                                   maxlength="80"
+                                   placeholder="VD: Giảm 100.000đ">
+
+                        </label>
+
+
+
+                        <!-- LOẠI VOUCHER -->
+                        <label>
+
+                            Loại voucher
+
+                            <select name="type"
+                                    required>
+
+                                <option value="fixed">
+                                    Giảm số tiền sản phẩm
+                                </option>
+
+                                <option value="percent">
+                                    Giảm phần trăm sản phẩm
+                                </option>
+
+                                <option value="shipping-discount">
+                                    Giảm phí vận chuyển
+                                </option>
+
+                                <option value="ship">
+                                    Miễn phí vận chuyển
+                                </option>
+
+                            </select>
+
+                        </label>
+
+
+
+                        <!-- GIÁ TRỊ -->
+                        <label>
+
+                            Giá trị
+
+                            <input name="value"
+                                   type="number"
+                                   min="0"
+                                   step="1000"
+                                   required>
+
+                        </label>
+
+
+
+                        <!-- ĐƠN TỐI THIỂU -->
+                        <label>
+
+                            Đơn tối thiểu (đ)
+
+                            <input name="min"
+                                   type="number"
+                                   min="0"
+                                   step="1000"
+                                   value="0"
+                                   required>
+
+                        </label>
+
+
+
+                        <!-- GIẢM TỐI ĐA -->
+                        <label>
+
+                            Giảm tối đa (đ)
+
+                            <input name="cap"
+                                   type="number"
+                                   min="0"
+                                   step="1000"
+                                   placeholder="Dành cho giảm %">
+
+                        </label>
+
+
+
+                        <!-- HIỆU LỰC TỪ -->
+                        <label>
+
+                            Hiệu lực từ
+
+                            <input name="validFrom"
+                                   type="date"
+                                   required>
+
+                        </label>
+
+
+
+                        <!-- HIỆU LỰC ĐẾN -->
+                        <label>
+
+                            Hiệu lực đến
+
+                            <input name="validUntil"
+                                   type="date"
+                                   required>
+
+                        </label>
+
+
+
+                        <!-- ACTION -->
+                        <div class="admin-voucher-actions">
+
+                            <button class="ui-btn"
+                                    type="button"
+                                    id="cancelVoucherEdit"
+                                    hidden>
+
+                                HỦY SỬA
+
+                            </button>
+
+
+                            <button class="collection-link"
+                                    type="submit">
+
+                                LƯU VOUCHER
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+
+
+                    <!-- VOUCHER TABLE -->
+                    <div class="ui-card">
+
+                        <div class="admin-table-scroll">
+
+                            <table class="data-table">
+
+                                <thead>
+
+                                    <tr>
+
+                                        <th>
+                                            Mã / Ưu đãi
+                                        </th>
+
+                                        <th>
+                                            Loại
+                                        </th>
+
+                                        <th>
+                                            Điều kiện
+                                        </th>
+
+                                        <th>
+                                            Hiệu lực
+                                        </th>
+
+                                        <th>
+                                            Trạng thái
+                                        </th>
+
+                                        <th>
+                                            Thao tác
+                                        </th>
+
+                                    </tr>
+
+                                </thead>
+
+
+                                <tbody id="voucherRows">
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+
+                        <p class="admin-empty-state"
+                           id="voucherEmpty"
+                           hidden>
+
+                            Chưa có voucher.
+
+                        </p>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+
+    <!-- TOAST -->
+    <div id="toast"
+         class="toast"
+         role="status"
+         aria-live="polite">
+    </div>
+
+
+
+    <!-- JAVASCRIPT -->
+    <script src="~/Scripts/Java/data.js"></script>
+
+    <script src="~/Scripts/Java/common.js"></script>
+
+    <script src="~/Scripts/Java/date-picker.js"></script>
+
+    <script src="~/Scripts/Java/form-select.js"></script>
+
+    <script src="~/Scripts/Java/admin-marketing.js"></script>
+
+</body>
+
+</html>

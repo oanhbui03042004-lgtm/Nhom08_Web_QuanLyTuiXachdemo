@@ -1,0 +1,220 @@
+﻿@{
+    ViewBag.Title = "Theo dõi vận đơn · MAISONÉ";
+    ViewBag.BodyClass = "admin-body";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="admin-app">
+
+    <aside class="admin-sidebar">
+
+        <div class="admin-brand">
+            MAISONÉ
+            <small>ORDER SUPPORT</small>
+        </div>
+
+        <div class="admin-user">
+            <i class="fa-solid fa-circle-user"></i>
+
+            <div>
+                <b data-admin-name>Nhân viên</b>
+                <span data-admin-role>Vận hành đơn hàng</span>
+            </div>
+        </div>
+
+        <nav>
+
+            <a href="@Url.Action("Index", "Admin")"
+               data-mvc-page="admin"
+               data-permission="dashboard">
+                <i class="fa-solid fa-gauge-high"></i>
+                Tổng quan
+            </a>
+
+            <a href="@Url.Action("Products", "Admin")"
+               data-mvc-page="products"
+               data-permission="products">
+                <i class="fa-solid fa-bag-shopping"></i>
+                Sản phẩm
+            </a>
+
+            <a href="@Url.Action("Orders", "Admin")"
+               data-mvc-page="orders"
+               data-permission="orders">
+                <i class="fa-solid fa-receipt"></i>
+                Đơn hàng & tài chính
+            </a>
+
+            <a href="@Url.Action("Inventory", "Admin")"
+               data-mvc-page="inventory"
+               data-permission="inventory">
+                <i class="fa-solid fa-boxes-stacked"></i>
+                Kho hàng
+            </a>
+
+            <a href="@Url.Action("Customers", "Admin")"
+               data-mvc-page="customers"
+               data-permission="customers">
+                <i class="fa-solid fa-users"></i>
+                Khách hàng
+            </a>
+
+            <a href="@Url.Action("Marketing", "Admin")"
+               data-mvc-page="marketing"
+               data-permission="vouchers">
+                <i class="fa-solid fa-ticket"></i>
+                Voucher
+            </a>
+
+            <a href="@Url.Action("Staff", "Admin")#personnel"
+               data-mvc-page="staffAdmin"
+               data-permission="staff">
+                <i class="fa-solid fa-users-gear"></i>
+                Nhân sự
+            </a>
+
+            <a href="@Url.Action("Staff", "Admin")#schedule"
+               data-mvc-page="staffAdmin"
+               data-permission="staff">
+                <i class="fa-solid fa-calendar-days"></i>
+                Lịch làm
+            </a>
+
+        </nav>
+
+        <div class="admin-sidebar-bottom">
+
+            <a href="@Url.Action("Index", "Home")">
+                <i class="fa-solid fa-store"></i>
+                Xem website
+            </a>
+
+            <a href="@Url.Action("Index", "Home")"
+               data-logout>
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Đăng xuất
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <main class="admin-main">
+
+        <header class="admin-topbar">
+
+            <div>
+                <span class="admin-breadcrumb">
+                    MAISONÉ / CUSTOMER CARE
+                </span>
+
+                <h1>Theo dõi vận đơn</h1>
+            </div>
+
+            <div class="admin-top-actions">
+
+                <span class="admin-avatar">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <section class="admin-content">
+
+            <div class="collection-head">
+
+                <div>
+
+                    <div class="section-number">
+                        ORDERS / TRACKING
+                    </div>
+
+                    <h1 class="page-title">
+                        Tra cứu hành trình đơn hàng
+                    </h1>
+
+                </div>
+
+
+                <button class="collection-link"
+                        id="refreshShipments"
+                        type="button">
+
+                    <i class="fa-solid fa-rotate"></i>
+                    LÀM MỚI
+
+                </button>
+
+            </div>
+
+
+            <p class="admin-report-note">
+                Tra cứu theo mã đơn, tên khách hoặc số điện thoại để tư vấn trạng thái xử lý và giao hàng.
+            </p>
+
+
+            <div class="ui-card shipment-search-card">
+
+                <label for="shipmentSearch">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    Tìm đơn hàng
+
+                </label>
+
+                <input id="shipmentSearch"
+                       type="search"
+                       class="ui-input"
+                       placeholder="Nhập mã đơn, tên khách hoặc số điện thoại..."
+                       autocomplete="off">
+
+            </div>
+
+
+            <div class="shipment-demo-note">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                <span>
+                    Trạng thái lấy từ dữ liệu đơn hàng demo trên trình duyệt.
+                    Chưa kết nối hãng vận chuyển nên chưa có mã vận đơn hoặc vị trí giao hàng thực tế.
+                </span>
+
+            </div>
+
+
+            <section id="shipmentResults"
+                     class="shipment-results"
+                     aria-live="polite">
+            </section>
+
+
+            <p class="admin-empty-state"
+               id="shipmentEmpty"
+               hidden>
+                Không tìm thấy đơn hàng phù hợp.
+            </p>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<div id="toast"
+     class="toast"
+     role="status"
+     aria-live="polite">
+</div>
+
+
+@section Scripts {
+
+    <script src="@Url.Content("~/Scripts/Java/admin-shipments.js")"></script>
+
+}

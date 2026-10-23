@@ -1,0 +1,117 @@
+﻿@{
+    ViewBag.Title = "Wishlist";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="announcement">
+    MAISONÉ · PREMIUM BAG STORE
+</div>
+
+
+<header class="header">
+
+    <div class="header-inner">
+
+        <nav class="left-nav">
+
+            <a class="nav-link"
+               href="@Url.Action("Index", "Home")">
+                HOME
+            </a>
+
+            <a class="nav-link"
+               href="@Url.Action("Index", "Products")">
+                COLLECTION
+            </a>
+
+        </nav>
+
+
+        <a class="logo"
+           href="@Url.Action("Index", "Home")">
+
+            MAISONÉ
+
+            <span class="logo-sub">
+                FASHION BAGS
+            </span>
+
+        </a>
+
+
+        <nav class="right-nav">
+
+            <a class="nav-link"
+               href="@Url.Action("Login", "Account")"
+               aria-label="Tài khoản">
+
+                <i class="fa-regular fa-user"></i>
+
+            </a>
+
+
+            <a class="nav-link"
+               href="@Url.Action("Index", "Wishlist")"
+               aria-label="Sản phẩm yêu thích">
+
+                <i class="fa-regular fa-heart"></i>
+
+            </a>
+
+
+            <a class="header-icon"
+               href="@Url.Action("Index", "Cart")"
+               aria-label="Giỏ hàng">
+
+                <i class="fa-solid fa-bag-shopping"></i>
+
+                <span class="cart-number"
+                      id="cartNumber">
+                    0
+                </span>
+
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main class="page-shell">
+
+    <div class="collection-head">
+
+        <h1 class="page-title">
+            Wishlist
+        </h1>
+
+
+        <a class="collection-link"
+           href="@Url.Action("Index", "Products")">
+
+            KHÁM PHÁ ↗
+
+        </a>
+
+    </div>
+
+
+    <div id="wish"
+         class="product-grid">
+    </div>
+
+</main>
+
+
+<div id="toast"
+     class="toast">
+</div>
+
+
+@section Scripts {
+
+    <script src="@Url.Content("~/Scripts/wishlist.js")"></script>
+
+}

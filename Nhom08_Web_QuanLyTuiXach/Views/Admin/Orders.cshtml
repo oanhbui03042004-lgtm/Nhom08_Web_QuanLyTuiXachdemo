@@ -1,0 +1,586 @@
+﻿@{
+    ViewBag.Title = "Đơn hàng & Tài chính · MAISONÉ Admin";
+}
+
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet"
+          href="~/Content/css/style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <title>Đơn hàng & Tài chính · MAISONÉ Admin</title>
+</head>
+
+<body class="admin-body">
+
+    <div class="admin-app">
+
+        <!-- SIDEBAR -->
+        <aside class="admin-sidebar">
+
+            <div class="admin-brand">
+                MAISONÉ
+                <small>ADMIN CONSOLE</small>
+            </div>
+
+
+            <!-- ADMIN USER -->
+            <div class="admin-user">
+
+                <i class="fa-solid fa-circle-user"></i>
+
+                <div>
+
+                    <b data-admin-name>
+                        System Admin
+                    </b>
+
+                    <span data-admin-role>
+                        Quản trị hệ thống
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- MENU -->
+            <nav>
+
+                <!-- TỔNG QUAN -->
+                <a href="@Url.Action("Index", "Admin")"
+                   data-permission="dashboard">
+
+                    <i class="fa-solid fa-gauge-high"></i>
+
+                    Tổng quan
+
+                </a>
+
+
+                <!-- SẢN PHẨM -->
+                <a href="@Url.Action("Products", "Admin")"
+                   data-permission="products">
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                    Sản phẩm
+
+                </a>
+
+
+                <!-- ĐƠN HÀNG -->
+                <a class="active"
+                   href="@Url.Action("Orders", "Admin")"
+                   data-permission="orders">
+
+                    <i class="fa-solid fa-receipt"></i>
+
+                    Đơn hàng & tài chính
+
+                </a>
+
+
+                <!-- KHO -->
+                <a href="@Url.Action("Inventory", "Admin")"
+                   data-permission="inventory">
+
+                    <i class="fa-solid fa-boxes-stacked"></i>
+
+                    Kho hàng
+
+                </a>
+
+
+                <!-- KHÁCH HÀNG -->
+                <a href="@Url.Action("Customers", "Admin")"
+                   data-permission="customers">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    Khách hàng
+
+                </a>
+
+
+                <!-- VOUCHER -->
+                <a href="@Url.Action("Marketing", "Admin")"
+                   data-permission="vouchers">
+
+                    <i class="fa-solid fa-ticket"></i>
+
+                    Voucher
+
+                </a>
+
+
+                <!-- NHÂN SỰ -->
+                <a href="@Url.Action("Staff", "Admin")#personnel"
+                   data-permission="staff">
+
+                    <i class="fa-solid fa-users-gear"></i>
+
+                    Nhân sự
+
+                </a>
+
+
+                <!-- LỊCH LÀM -->
+                <a href="@Url.Action("Staff", "Admin")#schedule"
+                   data-permission="staff">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    Lịch làm
+
+                </a>
+
+            </nav>
+
+
+            <!-- SIDEBAR BOTTOM -->
+            <div class="admin-sidebar-bottom">
+
+                <!-- XEM WEBSITE -->
+                <a href="@Url.Action("Index", "Home")">
+
+                    <i class="fa-solid fa-store"></i>
+
+                    Xem website
+
+                </a>
+
+
+                <!-- ĐĂNG XUẤT -->
+                <a href="@Url.Action("Index", "Home")"
+                   data-logout>
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    Đăng xuất
+
+                </a>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- MAIN -->
+        <main class="admin-main">
+
+
+            <!-- TOPBAR -->
+            <header class="admin-topbar">
+
+                <div>
+
+                    <span class="admin-breadcrumb">
+                        MAISONÉ / ADMIN
+                    </span>
+
+                    <h1>
+                        Đơn hàng & Tài chính
+                    </h1>
+
+                </div>
+
+
+                <div class="admin-top-actions">
+
+                    <span class="admin-avatar">
+                        A
+                    </span>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- CONTENT -->
+            <section class="admin-content">
+
+
+                <!-- PAGE HEADER -->
+                <div class="collection-head">
+
+                    <div>
+
+                        <div class="section-number">
+                            ORDERS / FINANCE
+                        </div>
+
+                        <h1 class="page-title">
+                            Đơn hàng & Tài chính
+                        </h1>
+
+                    </div>
+
+
+                    <!-- EXPORT CSV -->
+                    <button class="collection-link"
+                            id="exportOrders"
+                            type="button">
+
+                        <i class="fa-solid fa-file-csv"></i>
+
+                        XUẤT CSV
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- REPORT FILTERS -->
+                <div class="admin-report-filters">
+
+
+                    <!-- TỪ NGÀY -->
+                    <label>
+
+                        Từ ngày
+
+                        <input id="reportFrom"
+                               type="date">
+
+                    </label>
+
+
+                    <!-- ĐẾN NGÀY -->
+                    <label>
+
+                        Đến ngày
+
+                        <input id="reportTo"
+                               type="date">
+
+                    </label>
+
+
+                    <!-- TRẠNG THÁI -->
+                    <label>
+
+                        Trạng thái
+
+                        <select id="reportStatus">
+
+                            <option value="all">
+                                Tất cả
+                            </option>
+
+                            <option value="pending">
+                                Chờ xử lý
+                            </option>
+
+                            <option value="shipping">
+                                Đang giao
+                            </option>
+
+                            <option value="completed">
+                                Hoàn tất
+                            </option>
+
+                        </select>
+
+                    </label>
+
+
+                    <!-- FILTER -->
+                    <button class="ui-btn"
+                            id="applyReportFilters"
+                            type="button">
+
+                        LỌC BÁO CÁO
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- REPORT NOTE -->
+                <p class="admin-report-note"
+                   id="reportDescription">
+
+                    Báo cáo gồm các đơn hàng được đặt trong khoảng ngày đã chọn.
+                    Tải xuống định dạng CSV UTF-8 để mở bằng Excel.
+
+                </p>
+
+
+
+                <!-- REPORT STATS -->
+                <div class="stats">
+
+
+                    <!-- SỐ ĐƠN -->
+                    <div class="stat">
+
+                        <small>
+                            SỐ ĐƠN
+                        </small>
+
+                        <b id="reportCount">
+                            0
+                        </b>
+
+                    </div>
+
+
+                    <!-- DOANH THU -->
+                    <div class="stat">
+
+                        <small>
+                            DOANH THU ĐẶT HÀNG
+                        </small>
+
+                        <b id="reportRevenue">
+                            0đ
+                        </b>
+
+                    </div>
+
+
+                    <!-- HOÀN TẤT -->
+                    <div class="stat">
+
+                        <small>
+                            ĐÃ HOÀN TẤT
+                        </small>
+
+                        <b id="reportCompleted">
+                            0
+                        </b>
+
+                    </div>
+
+
+                    <!-- CHƯA HOÀN TẤT -->
+                    <div class="stat">
+
+                        <small>
+                            CHƯA HOÀN TẤT
+                        </small>
+
+                        <b id="reportOpen">
+                            0
+                        </b>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- REPORT TABLE -->
+                <div class="ui-card">
+
+                    <div class="admin-table-scroll">
+
+                        <table class="data-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Mã đơn
+                                    </th>
+
+                                    <th>
+                                        Ngày đặt
+                                    </th>
+
+                                    <th>
+                                        Khách hàng
+                                    </th>
+
+                                    <th>
+                                        Sản phẩm
+                                    </th>
+
+                                    <th>
+                                        Tổng
+                                    </th>
+
+                                    <th>
+                                        Thanh toán
+                                    </th>
+
+                                    <th>
+                                        Trạng thái
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="reportRows">
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+                    <p class="admin-empty-state"
+                       id="reportEmpty"
+                       hidden>
+
+                        Chưa có đơn hàng phù hợp.
+                        Hãy đặt đơn demo từ cửa hàng để báo cáo có dữ liệu.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- INVOICE ARCHIVE -->
+                <section class="ui-card invoice-archive-card">
+
+
+                    <!-- HEADING -->
+                    <div class="admin-section-heading">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                CUSTOMER INVOICES
+                            </span>
+
+                            <h2>
+                                Kho lưu trữ hóa đơn khách hàng
+                            </h2>
+
+                            <p>
+                                Danh sách được lấy từ các đơn đã lưu trên website.
+                                Chọn một đơn để xem hóa đơn, in hoặc lưu thành PDF.
+                            </p>
+
+                        </div>
+
+
+                        <!-- SEARCH -->
+                        <label class="invoice-search">
+
+                            <span class="sr-only">
+                                Tìm hóa đơn khách hàng
+                            </span>
+
+                            <input id="invoiceSearch"
+                                   type="search"
+                                   placeholder="Tìm theo mã đơn, tên khách, số điện thoại..."
+                                   autocomplete="off">
+
+                        </label>
+
+                    </div>
+
+
+
+                    <!-- INVOICE TABLE -->
+                    <div class="admin-table-scroll">
+
+                        <table class="data-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Mã hóa đơn / đơn hàng
+                                    </th>
+
+                                    <th>
+                                        Ngày đặt
+                                    </th>
+
+                                    <th>
+                                        Khách hàng
+                                    </th>
+
+                                    <th>
+                                        Số điện thoại
+                                    </th>
+
+                                    <th>
+                                        Tổng thanh toán
+                                    </th>
+
+                                    <th>
+                                        Trạng thái
+                                    </th>
+
+                                    <th>
+                                        Hóa đơn
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="invoiceArchiveRows">
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+                    <p class="admin-empty-state"
+                       id="invoiceArchiveEmpty"
+                       hidden>
+
+                        Chưa có hóa đơn phù hợp.
+                        Các đơn hàng đã lưu trên website sẽ hiển thị tại đây.
+
+                    </p>
+
+                </section>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+
+    <!-- TOAST -->
+    <div id="toast"
+         class="toast"
+         role="status"
+         aria-live="polite">
+    </div>
+
+
+
+    <!-- JAVASCRIPT -->
+    <script src="~/Scripts/Java/data.js"></script>
+
+    <script src="~/Scripts/Java/common.js"></script>
+
+    <script src="~/Scripts/Java/date-picker.js"></script>
+
+    <script src="~/Scripts/Java/form-select.js"></script>
+
+    <script src="~/Scripts/Java/admin-orders.js"></script>
+
+</body>
+
+</html>

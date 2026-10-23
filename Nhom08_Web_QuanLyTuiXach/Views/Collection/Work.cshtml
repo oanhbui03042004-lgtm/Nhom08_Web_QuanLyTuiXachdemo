@@ -1,0 +1,260 @@
+﻿@{
+    ViewBag.Title = "Bộ sưu tập Công Sở · MAISONÉ";
+    ViewBag.BodyClass = "collection-page seasonal-page";
+    ViewBag.CollectionKey = "work";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!doctype html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <title>Bộ sưu tập Công Sở · MAISONÉ</title>
+
+    <link rel="stylesheet"
+          href="~/Content/css/style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body class="collection-page seasonal-page"
+      data-collection="work">
+
+    <div class="announcement">
+        MAISONÉ · WORK EDIT
+    </div>
+
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="header-inner">
+
+            <nav class="left-nav">
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Home")">
+                    TRANG CHỦ
+                </a>
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Products")">
+                    TẤT CẢ TÚI
+                </a>
+
+                <a class="nav-link"
+                   href="@Url.Action("Customer", "Account")">
+                    THÀNH VIÊN
+                </a>
+
+            </nav>
+
+
+            <button class="mobile-button"
+                    type="button"
+                    onclick="toggleMobileMenu()"
+                    aria-label="Mở menu">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+            <a class="logo"
+               href="@Url.Action("Index", "Home")">
+
+                MAISONÉ
+
+                <span class="logo-sub">
+                    FASHION BAGS
+                </span>
+
+            </a>
+
+
+            <nav class="right-nav">
+
+                <a class="header-icon"
+                   href="@Url.Action("Index", "Wishlist")"
+                   aria-label="Yêu thích">
+
+                    <i class="fa-regular fa-heart"></i>
+
+                </a>
+
+
+                <a class="header-icon"
+                   href="@Url.Action("Index", "Cart")"
+                   aria-label="Giỏ hàng">
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                    <span class="cart-number"
+                          id="cartNumber">
+                        0
+                    </span>
+
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- MOBILE MENU -->
+    <nav class="mobile-menu"
+         id="mobileMenu">
+
+        <a href="@Url.Action("Index", "Home")">
+            TRANG CHỦ
+        </a>
+
+        <a href="@Url.Action("Index", "Products")">
+            TẤT CẢ TÚI
+        </a>
+
+        <a href="@Url.Action("Customer", "Account")">
+            THÀNH VIÊN
+        </a>
+
+        <a href="@Url.Action("Index", "Cart")">
+            GIỎ HÀNG
+        </a>
+
+    </nav>
+
+
+    <!-- MAIN -->
+    <main class="page-shell collection-shell">
+
+
+        <!-- BREADCRUMB -->
+        <div class="service-breadcrumb">
+
+            <a href="@Url.Action("Index", "Home")">
+                Trang chủ
+            </a>
+
+            <span>/</span>
+
+            <a href="@Url.Action("Index", "Products")">
+                Bộ sưu tập
+            </a>
+
+            <span>/</span>
+
+            <span>
+                Công Sở
+            </span>
+
+        </div>
+
+
+        <!-- HERO -->
+        <section class="seasonal-hero seasonal-work">
+
+            <span class="eyebrow">
+                03 / WORK EDIT
+            </span>
+
+            <h1>
+                Công Sở
+                <br>
+                <em>mỗi ngày chỉn chu.</em>
+            </h1>
+
+            <p>
+                Những chiếc túi cân bằng giữa công năng
+                và phong thái chuyên nghiệp.
+            </p>
+
+        </section>
+
+
+        <!-- PRODUCTS -->
+        <section class="catalog-products">
+
+            <div class="catalog-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        CURATED EDIT
+                    </span>
+
+                    <h2>
+                        Túi trong bộ sưu tập Công Sở
+                    </h2>
+
+                </div>
+
+                <span class="catalog-count"
+                      id="catalogCount">
+                </span>
+
+            </div>
+
+
+            <div id="products"
+                 class="product-grid catalog-grid">
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER ACTIONS -->
+        <div class="service-footer-actions">
+
+            <a class="ui-btn light"
+               href="@Url.Action("Index", "Products")">
+
+                ← TẤT CẢ SẢN PHẨM
+
+            </a>
+
+
+            <a class="ui-btn"
+               href="@Url.Action("Weekend", "Collection")">
+
+                KHÁM PHÁ BỘ SƯU TẬP DẠO PHỐ →
+
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- TOAST -->
+    <div id="toast"
+         class="toast"
+         role="status"
+         aria-live="polite">
+    </div>
+
+
+    @section Scripts {
+
+        <script>
+        window.productDetailUrl =
+            '@Url.Action("Detail", "Products")';
+        </script>
+
+
+
+        <script src="@Url.Content("~/Scripts/Java/collection.js")"></script>
+    }
+
+</body>
+
+</html>

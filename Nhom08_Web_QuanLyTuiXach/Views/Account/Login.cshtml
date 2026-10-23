@@ -1,0 +1,385 @@
+﻿@{
+    ViewBag.Title = "Đăng nhập · MAISONÉ";
+}
+
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <title>Đăng nhập · MAISONÉ</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="~/Content/css/style.css">
+</head>
+
+
+<body class="account-auth-page">
+
+
+    <!-- ANNOUNCEMENT -->
+    <div class="announcement">
+        MAISONÉ · THIẾT KẾ DÀNH RIÊNG CHO BẠN
+    </div>
+
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="header-inner">
+
+
+            <!-- LEFT NAV -->
+            <nav class="left-nav">
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Home")">
+                    TRANG CHỦ
+                </a>
+
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Products")">
+                    SẢN PHẨM
+                </a>
+
+            </nav>
+
+
+            <!-- MOBILE BUTTON -->
+            <button class="mobile-button"
+                    type="button"
+                    onclick="toggleMobileMenu()"
+                    aria-label="Mở menu">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+            <!-- LOGO -->
+            <a class="logo"
+               href="@Url.Action("Index", "Home")">
+
+                MAISONÉ
+
+                <span class="logo-sub">
+                    BAGS & ACCESSORIES
+                </span>
+
+            </a>
+
+
+            <!-- CART -->
+            <nav class="right-nav">
+
+                <a class="header-icon"
+                   href="@Url.Action("Index", "Cart")"
+                   aria-label="Giỏ hàng">
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                    <span class="cart-number"
+                          id="cartNumber">
+                        0
+                    </span>
+
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- MOBILE MENU -->
+    <nav class="mobile-menu"
+         id="mobileMenu">
+
+        <a href="@Url.Action("Index", "Home")">
+            TRANG CHỦ
+        </a>
+
+        <a href="@Url.Action("Index", "Products")">
+            SẢN PHẨM
+        </a>
+
+        <a href="@Url.Action("Index", "Cart")">
+            GIỎ HÀNG
+        </a>
+
+    </nav>
+
+
+
+    <!-- MAIN -->
+    <main class="auth-page">
+
+        <section class="auth-box auth-box-redesigned">
+
+            <div class="auth-form">
+
+
+                <!-- TITLE -->
+                <span class="eyebrow">
+                    WELCOME BACK
+                </span>
+
+
+                <h1 class="page-title">
+
+                    Chào mừng bạn
+                    <br>
+
+                    <em>trở lại.</em>
+
+                </h1>
+
+
+                <p class="account-subtitle">
+
+                    Đăng nhập để theo dõi đơn hàng
+                    và khám phá những thiết kế mới nhất.
+
+                </p>
+
+
+
+                <!-- LOGIN FORM -->
+                <form id="loginForm"
+                      class="account-form">
+
+
+                    <!-- EMAIL -->
+                    <div class="account-field">
+
+                        <label for="email">
+                            Email
+                        </label>
+
+                        <input class="ui-input"
+                               id="email"
+                               name="email"
+                               type="email"
+                               autocomplete="email"
+                               required
+                               placeholder="ban@email.com">
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+                    <div class="account-field">
+
+                        <label for="password">
+                            Mật khẩu
+                        </label>
+
+                        <input class="ui-input"
+                               id="password"
+                               name="password"
+                               type="password"
+                               autocomplete="current-password"
+                               required
+                               placeholder="Nhập mật khẩu">
+
+                    </div>
+
+
+                    <!-- FORGOT PASSWORD -->
+                    <div class="auth-form-meta">
+
+                        <a class="link"
+                           href="@Url.Action("ForgotPassword", "Account")">
+
+                            Quên mật khẩu?
+
+                        </a>
+
+                    </div>
+
+
+                    <!-- LOGIN BUTTON -->
+                    <button class="ui-btn auth-submit"
+                            type="submit">
+
+                        ĐĂNG NHẬP
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </form>
+
+
+
+                <!-- REGISTER -->
+                <p class="auth-switch">
+
+                    Bạn chưa có tài khoản?
+
+                    <a class="link"
+                       href="@Url.Action("Register", "Account")">
+
+                        Đăng ký ngay
+
+                    </a>
+
+                </p>
+
+
+
+                <!-- DEMO LOGIN -->
+                <details class="demo-login"
+                         open>
+
+                    <summary>
+                        Tài khoản demo để kiểm tra
+                    </summary>
+
+
+                    <div class="demo-account-list">
+
+
+                        <!-- ADMIN -->
+                        <button type="button"
+                                data-demo-email="admin@bagstore.vn"
+                                data-demo-password="admin123">
+
+                            <strong>
+                                Quản trị viên
+                            </strong>
+
+                            <span>
+                                admin@bagstore.vn
+                            </span>
+
+                            <small>
+                                Mật khẩu: admin123
+                            </small>
+
+                        </button>
+
+
+
+                        <!-- MANAGER -->
+                        <button type="button"
+                                data-demo-email="manager@bagstore.vn"
+                                data-demo-password="manager123">
+
+                            <strong>
+                                Quản lý
+                            </strong>
+
+                            <span>
+                                manager@bagstore.vn
+                            </span>
+
+                            <small>
+                                Mật khẩu: manager123
+                            </small>
+
+                        </button>
+
+
+
+                        <!-- STAFF -->
+                        <button type="button"
+                                data-demo-email="staff@bagstore.vn"
+                                data-demo-password="staff123">
+
+                            <strong>
+                                Nhân viên
+                            </strong>
+
+                            <span>
+                                staff@bagstore.vn
+                            </span>
+
+                            <small>
+                                Mật khẩu: staff123
+                            </small>
+
+                        </button>
+
+
+
+                        <!-- CUSTOMER -->
+                        <button type="button"
+                                data-demo-email="customer@bagstore.vn"
+                                data-demo-password="customer123">
+
+                            <strong>
+                                Khách hàng
+                            </strong>
+
+                            <span>
+                                customer@bagstore.vn
+                            </span>
+
+                            <small>
+                                Mật khẩu: customer123
+                            </small>
+
+                        </button>
+
+
+                    </div>
+
+                </details>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- TOAST -->
+    <div id="toast"
+         class="toast"
+         role="status"
+         aria-live="polite">
+    </div>
+
+
+
+    <!-- MVC URL DÙNG CHO auth.js -->
+    <script>
+
+        const mvcHomeUrl = '@Url.Action("Index", "Home")';
+
+        const mvcLoginUrl = '@Url.Action("Login", "Account")';
+
+    </script>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="~/Scripts/Java/data.js"></script>
+
+    <script src="~/Scripts/Java/common.js"></script>
+
+    <script src="~/Scripts/Java/auth.js"></script>
+
+
+</body>
+
+</html>

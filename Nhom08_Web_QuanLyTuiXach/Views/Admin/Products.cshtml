@@ -1,0 +1,482 @@
+﻿@{
+    ViewBag.Title = "Admin Sản phẩm · MAISONÉ Admin";
+}
+
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="~/Content/css/style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <title>Admin Sản phẩm · MAISONÉ Admin</title>
+</head>
+
+<body class="admin-body">
+
+    <div class="admin-app">
+
+        <!-- SIDEBAR -->
+        <aside class="admin-sidebar">
+
+            <div class="admin-brand">
+                MAISONÉ
+                <small>ADMIN CONSOLE</small>
+            </div>
+
+            <div class="admin-user">
+                <i class="fa-solid fa-circle-user"></i>
+
+                <div>
+                    <b data-admin-name>Administrator</b>
+                    <span data-admin-role>Quản trị hệ thống</span>
+                </div>
+            </div>
+
+            <nav>
+
+                <!-- Tổng quan -->
+                <a href="@Url.Action("Index", "Admin")"
+                   data-permission="dashboard">
+
+                    <i class="fa-solid fa-gauge-high"></i>
+                    Tổng quan
+
+                </a>
+
+                <!-- Sản phẩm -->
+                <a class="active"
+                   href="@Url.Action("Products", "Admin")"
+                   aria-current="page"
+                   data-permission="products">
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    Sản phẩm
+
+                </a>
+
+                <!-- Đơn hàng -->
+                <a href="@Url.Action("Orders", "Admin")"
+                   data-permission="orders">
+
+                    <i class="fa-solid fa-receipt"></i>
+                    Đơn hàng & tài chính
+
+                </a>
+
+                <!-- Kho -->
+                <a href="@Url.Action("Inventory", "Admin")"
+                   data-permission="inventory">
+
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    Kho hàng
+
+                </a>
+
+                <!-- Khách hàng -->
+                <a href="@Url.Action("Customers", "Admin")"
+                   data-permission="customers">
+
+                    <i class="fa-solid fa-users"></i>
+                    Khách hàng
+
+                </a>
+
+                <!-- Voucher -->
+                <a href="@Url.Action("Marketing", "Admin")"
+                   data-permission="vouchers">
+
+                    <i class="fa-solid fa-ticket"></i>
+                    Voucher
+
+                </a>
+
+                <!-- Nhân sự -->
+                <a href="@Url.Action("Staff", "Admin")#personnel"
+                   data-permission="staff">
+
+                    <i class="fa-solid fa-users-gear"></i>
+                    Nhân sự
+
+                </a>
+
+                <!-- Lịch làm -->
+                <a href="@Url.Action("Staff", "Admin")#schedule"
+                   data-permission="staff">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+                    Lịch làm
+
+                </a>
+
+            </nav>
+
+            <div class="admin-sidebar-bottom">
+
+                <!-- Xem website -->
+                <a href="@Url.Action("Index", "Home")">
+
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    Xem website
+
+                </a>
+
+                <!-- Đăng xuất -->
+                <a href="@Url.Action("Index", "Home")"
+                   data-logout>
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Đăng xuất
+
+                </a>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN -->
+        <main class="admin-main">
+
+            <!-- TOPBAR -->
+            <header class="admin-topbar">
+
+                <div>
+                    <span class="admin-breadcrumb">
+                        MAISONÉ / ADMIN
+                    </span>
+
+                    <h1>
+                        Admin Sản phẩm
+                    </h1>
+                </div>
+
+                <div class="admin-top-actions">
+
+                    <a href="@Url.Action("Index", "Home")"
+                       title="Website">
+
+                        <i class="fa-solid fa-store"></i>
+
+                    </a>
+
+                    <button onclick="toast('Không có thông báo mới')"
+                            type="button">
+
+                        <i class="fa-regular fa-bell"></i>
+
+                    </button>
+
+                    <span class="admin-avatar">
+                        A
+                    </span>
+
+                </div>
+
+            </header>
+
+
+            <!-- CONTENT -->
+            <section class="admin-content">
+
+                <div class="collection-head">
+
+                    <div>
+                        <div class="section-number">
+                            ADMIN / PRODUCT
+                        </div>
+
+                        <h1 class="page-title">
+                            Admin Sản phẩm
+                        </h1>
+                    </div>
+
+                    <button class="collection-link"
+                            id="addProductButton"
+                            type="button">
+
+                        + THÊM SẢN PHẨM
+
+                    </button>
+
+                </div>
+
+
+                <!-- PRODUCT TABLE -->
+                <div class="ui-card">
+
+                    <div style="overflow:auto">
+
+                        <table class="data-table">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Mã</th>
+                                    <th>Sản phẩm</th>
+                                    <th>Danh mục</th>
+                                    <th>Giá</th>
+                                    <th>Biến thể</th>
+                                    <th>Tồn kho</th>
+                                    <th>Thao tác</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="adminRows"></tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- PRODUCT MODAL -->
+    <div class="admin-product-modal"
+         id="productModal"
+         hidden>
+
+        <div class="admin-product-backdrop"
+             data-close-product-modal>
+        </div>
+
+
+        <section class="admin-product-dialog"
+                 role="dialog"
+                 aria-modal="true"
+                 aria-labelledby="productFormTitle">
+
+            <button class="admin-product-close"
+                    type="button"
+                    aria-label="Đóng"
+                    data-close-product-modal>
+
+                &times;
+
+            </button>
+
+
+            <span class="section-number">
+                ADMIN / PRODUCT
+            </span>
+
+
+            <h2 id="productFormTitle">
+                Thêm sản phẩm
+            </h2>
+
+
+            <!-- FORM -->
+            <form id="productForm">
+
+                <input type="hidden"
+                       name="productId">
+
+
+                <!-- TÊN -->
+                <label>
+                    Tên sản phẩm
+
+                    <input name="name"
+                           required
+                           maxlength="100">
+                </label>
+
+
+                <!-- THÔNG TIN SẢN PHẨM -->
+                <div class="admin-product-fields">
+
+                    <!-- DANH MỤC -->
+                    <label>
+                        Danh mục
+
+                        <select name="category"
+                                required>
+
+                            <option value="Shoulder">
+                                Shoulder
+                            </option>
+
+                            <option value="Mini">
+                                Mini
+                            </option>
+
+                            <option value="Office">
+                                Office
+                            </option>
+
+                            <option value="Tote">
+                                Tote
+                            </option>
+
+                        </select>
+                    </label>
+
+
+                    <!-- GIÁ BÁN -->
+                    <label>
+                        Giá bán (đ)
+
+                        <input name="price"
+                               type="number"
+                               min="0"
+                               step="1000"
+                               required>
+                    </label>
+
+
+                    <!-- GIÁ GỐC -->
+                    <label>
+                        Giá gốc (đ)
+
+                        <input name="oldPrice"
+                               type="number"
+                               min="0"
+                               step="1000">
+                    </label>
+
+
+                    <!-- NHÃN -->
+                    <label>
+                        Nhãn sản phẩm
+
+                        <input name="label"
+                               maxlength="40"
+                               placeholder="Ví dụ: MỚI">
+                    </label>
+
+                </div>
+
+
+                <!-- BỘ SƯU TẬP -->
+                <fieldset class="admin-product-collections">
+
+                    <legend>
+                        Bộ sưu tập
+                    </legend>
+
+                    <label>
+                        <input type="checkbox"
+                               name="collections"
+                               value="autumn">
+
+                        Thu đông
+                    </label>
+
+                    <label>
+                        <input type="checkbox"
+                               name="collections"
+                               value="summer">
+
+                        Mùa hè
+                    </label>
+
+                    <label>
+                        <input type="checkbox"
+                               name="collections"
+                               value="work">
+
+                        Công sở
+                    </label>
+
+                    <label>
+                        <input type="checkbox"
+                               name="collections"
+                               value="weekend">
+
+                        Cuối tuần
+                    </label>
+
+                </fieldset>
+
+
+                <!-- ẢNH -->
+                <label>
+                    Ảnh sản phẩm (thư mục Images)
+
+                    <select name="image"
+                            required>
+
+                        <option value=""
+                                disabled
+                                selected>
+
+                            Chọn ảnh trong thư mục Images
+
+                        </option>
+
+                    </select>
+                </label>
+
+
+                <!-- MÔ TẢ -->
+                <label>
+                    Mô tả
+
+                    <textarea name="description"
+                              rows="4"
+                              maxlength="500"></textarea>
+                </label>
+
+
+                <p class="admin-product-hint">
+                    Ảnh dùng tệp có sẵn trong thư mục Images.
+                    Sản phẩm được lưu trên trình duyệt này.
+                </p>
+
+
+                <!-- BUTTON -->
+                <div class="admin-product-actions">
+
+                    <button class="ui-btn"
+                            type="button"
+                            data-close-product-modal>
+
+                        HỦY
+
+                    </button>
+
+                    <button class="collection-link"
+                            type="submit">
+
+                        LƯU SẢN PHẨM
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </div>
+
+
+    <!-- TOAST -->
+    <div id="toast"
+         class="toast">
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="~/Scripts/Java/data.js"></script>
+
+    <script src="~/Scripts/Java/common.js"></script>
+
+    <script src="~/Scripts/Java/form-select.js"></script>
+
+    <script src="~/Scripts/Java/admin-products.js"></script>
+
+</body>
+</html>
